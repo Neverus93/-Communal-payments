@@ -7,8 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
-        <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,60,0,0" Background="Black" Width="311" Height="190" VerticalAlignment="Top"/>
-        <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311" Background="#FF5120D3"/>
+        <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,60,0,0" Width="311" Height="190" VerticalAlignment="Top">
+            <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
+            <TextBox x:Name="HotWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
+            <TextBox x:Name="ColdWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
+            <TextBox x:Name="ElectricityInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+        </StackPanel>
+        <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
+            <Button x:Name="SaveCalling" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+            <Button x:Name="SettingsCalling" Content="Настройки" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+            <Button x:Name="InfoCalling" Content="О программе" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+        </StackPanel>
         <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="100" Margin="326,60,0,0" VerticalAlignment="Top" Width="456" Background="#FFEC731F"/>
         <StackPanel x:Name="CurrentIndicatorsPlusAmount" HorizontalAlignment="Left" Height="237" Margin="326,165,0,0" VerticalAlignment="Top" Width="456" Background="#FF1FCD16"/>
     </Grid>
