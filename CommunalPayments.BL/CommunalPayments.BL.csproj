@@ -41,9 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ColdWaterIndicator.cs" />
-    <Compile Include="Model\ElectricityIndicator.cs" />
-    <Compile Include="Model\HotWaterIndicator.cs" />
+    <Compile Include="Controller\IndicatorController.cs" />
+    <Compile Include="Model\DataIndicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
