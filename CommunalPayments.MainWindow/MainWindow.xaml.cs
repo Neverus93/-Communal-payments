@@ -9,6 +9,7 @@ namespace CommunalPayments.MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
+        XmlSerializer formatter = new XmlSerializer(typeof(DataIndicator));
         public MainWindow()
         {
             InitializeComponent();
@@ -26,11 +27,18 @@ namespace CommunalPayments.MainWindow
         public void SaveData(double cold, double hot, double electro)
         {
             DataIndicator data = new DataIndicator(cold, hot, electro);
-            XmlSerializer formatter = new XmlSerializer(typeof(DataIndicator));
 
-            using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.Append, FileAccess.Write))
+            using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, data);
+            }
+        }
+
+        public void GetData(out DataIndicator data)
+        {
+            using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
+            {
+                data = (DataIndicator)formatter.Deserialize(fs);
             }
         }
     }
