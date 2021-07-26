@@ -8,11 +8,11 @@ namespace CommunalPayments.BL.Controller
 {
     class IndicatorController
     {
-        public List<DataIndicator> DataIndicators { get; }
+        public DataIndicator Indicator { get; }
 
-        public IndicatorController(List<DataIndicator> lastDataIndicators)
+        public IndicatorController(DataIndicator lastDataIndicators)
         {
-            DataIndicators = lastDataIndicators;
+            Indicator = lastDataIndicators;
         }
 
         private void SetNewData()
@@ -26,7 +26,7 @@ namespace CommunalPayments.BL.Controller
 
             using(var fs = new FileStream("DataIndicators.xml", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, DataIndicators);
+                formatter.Serialize(fs, Indicator);
             }
         }
 
