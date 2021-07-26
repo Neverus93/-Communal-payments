@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CommunalPayments.BL.Model
+namespace CommunalPayments.MainWindow
 {
     [Serializable]
-    class DataIndicator
+    public class DataIndicator
     {
         public double ColdWater { get; set; }
         public double HotWater { get; set; }
