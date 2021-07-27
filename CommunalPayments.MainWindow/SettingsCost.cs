@@ -36,5 +36,13 @@ namespace CommunalPayments.MainWindow
                 formatterCost.Serialize(fs, settings);
             }
         }
+
+        public void GetSettings(out SettingsCost dataCost)
+        {
+            using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
+            {
+                dataCost = (SettingsCost)formatterCost.Deserialize(fs);
+            }
+        }
     }
 }
