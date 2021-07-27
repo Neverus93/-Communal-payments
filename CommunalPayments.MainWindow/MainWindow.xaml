@@ -9,38 +9,75 @@
     <Grid>
         <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,40,0,0" Width="311" Height="190" VerticalAlignment="Top">
             <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
-            <TextBox x:Name="HotWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="HotWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="HotWaterInput_TextChanged"/>
             <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ColdWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ColdWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="ColdWaterInput_TextChanged"/>
             <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ElectricityInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ElectricityInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="ElectricityInput_TextChanged"/>
         </StackPanel>
         <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
             <Button x:Name="SaveCalling" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100" Click="SaveCalling_Click"/>
-            <Button x:Name="SettingsCalling" Content="Настройки" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100"/>
+            <Button x:Name="SettingsCalling" Content="Настройки" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100" Click="SettingsCalling_Click"/>
             <Button x:Name="InfoCalling" Content="О программе" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
         </StackPanel>
-        <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="79" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">
-            <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="56" Margin="0,0,-2,0" VerticalAlignment="Top" Width="448">
-                <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Электричество:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
+        <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="89" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">
+            <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="69" Margin="0,0,-2,-13" VerticalAlignment="Top" Width="448">
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="PreviousCold" Content="" Margin="2,0,0,0" Width="349" Height="24" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="PreviousHot" Content="" Margin="2,0,0,0" Width="359" Height="24" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <TextBlock Text="Электричество:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="PreviousElecricity" Content="" Margin="2,0,0,0" Width="352" Height="24" VerticalAlignment="Top"/>
+                </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Текущие показания" HorizontalAlignment="Left" Height="79" Margin="326,133,0,0" VerticalAlignment="Top" Width="458">
-            <StackPanel x:Name="CurrentIndicators" HorizontalAlignment="Left" Height="58" Margin="0,0,-2,-2" VerticalAlignment="Top" Width="448">
-                <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Электричество:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
+        <GroupBox Header="Текущие показания" HorizontalAlignment="Left" Height="89" Margin="326,138,0,0" VerticalAlignment="Top" Width="458">
+            <StackPanel x:Name="CurrentIndicators" HorizontalAlignment="Left" Height="76" Margin="0,0,-2,0" VerticalAlignment="Top" Width="448">
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="CurrentCold" Content="" Margin="2,0,0,0" Width="351" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="25">
+                    <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="CurrentHot" Content="" Margin="2,0,0,0" Width="359" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="21">
+                    <TextBlock Text="Электричество:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="CurrentElecricity" Content="" Margin="2,-2,0,-1" Width="352" VerticalAlignment="Center" Height="24"/>
+                </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Расчёт" HorizontalAlignment="Left" Height="194" Margin="326,217,0,0" VerticalAlignment="Top" Width="458">
-            <StackPanel x:Name="CalculateBox" HorizontalAlignment="Left" Margin="0,0,-2,0" Width="448">
-                <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Электричество:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="Интернет:" HorizontalAlignment="Left" Margin="10,1,0,2"/>
-                <TextBlock Text="ИТОГО:" HorizontalAlignment="Left" Margin="10,50"/>
+        <GroupBox Header="Расчёт" HorizontalAlignment="Left" Height="165" Margin="326,232,0,0" VerticalAlignment="Top" Width="458">
+            <StackPanel x:Name="CalculateBox" HorizontalAlignment="Left" Margin="0,0,-2,1" Width="448">
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="CalculateCold" Content="" Margin="2,0,0,0" Width="351" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="25">
+                    <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <Label x:Name="CalculateHot" Content="" Margin="2,0,0,0" Width="358" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="21">
+                    <TextBlock Text="Электричество:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="CalculateElecricity" Content="" Margin="2,-2,0,-1" Width="352" VerticalAlignment="Center" Height="24"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="21">
+                    <TextBlock Text="Водоотвод:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="CalculateWaterSummator" Content="" Margin="2,-2,0,-1" Width="373" VerticalAlignment="Center" Height="24"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="21">
+                    <TextBlock Text="Интернет:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="CalculateInternet" Content="" Margin="2,-2,0,-1" Width="381" VerticalAlignment="Center" Height="24"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="21">
+                    <TextBlock Text="ИТОГО:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label x:Name="CalculateScore" Content="" Margin="2,-2,0,-1" Width="394" VerticalAlignment="Center" Height="24"/>
+                </StackPanel>
             </StackPanel>
         </GroupBox>
     </Grid>

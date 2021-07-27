@@ -9,10 +9,29 @@ namespace CommunalPayments.MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {
-        XmlSerializer formatter = new XmlSerializer(typeof(DataIndicator));
+        DataIndicator data = new DataIndicator();
+        SettingsCost settings = new SettingsCost();
+        private readonly string indicatorPath = "DataIndicator.xml";
+        private readonly string settingsPath = "Settings.xml";
         public MainWindow()
         {
             InitializeComponent();
+            if (File.Exists(indicatorPath))
+            {
+                data.GetData(out data);
+            }
+            else
+            {
+                data.SaveData(0, 0, 0);
+            }
+
+            if (!File.Exists(settingsPath))
+            {
+                settings.SaveSettings(0, 0, 0, 0);
+            }
+            PreviousCold.Content = data.ColdWater;
+            PreviousHot.Content = data.HotWater;
+            PreviousElecricity.Content = data.Electricity;
         }
 
         private void SaveCalling_Click(object sender, RoutedEventArgs e)
@@ -21,25 +40,28 @@ namespace CommunalPayments.MainWindow
             double hotWater = double.Parse(HotWaterInput.Text);
             double electricity = double.Parse(ElectricityInput.Text);
 
-            SaveData(coldWater, hotWater, electricity);
+            data.SaveData(coldWater, hotWater, electricity);
         }
 
-        public void SaveData(double cold, double hot, double electro)
+        private void HotWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            DataIndicator data = new DataIndicator(cold, hot, electro);
-
-            using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, data);
-            }
+            CurrentHot.Content = HotWaterInput.Text;
         }
 
-        public void GetData(out DataIndicator data)
+        private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
-            {
-                data = (DataIndicator)formatter.Deserialize(fs);
-            }
+            CurrentCold.Content = ColdWaterInput.Text;
+        }
+
+        private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CurrentElecricity.Content = ElectricityInput.Text;
+        }
+
+        private void SettingsCalling_Click(object sender, RoutedEventArgs e)
+        {
+            CostSettings costSettings = new CostSettings();
+            costSettings.Show();
         }
     }
 }
