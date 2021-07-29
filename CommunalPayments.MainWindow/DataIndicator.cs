@@ -42,5 +42,20 @@ namespace CommunalPayments.MainWindow
                 data = (DataIndicator)formatterData.Deserialize(fs);
             }
         }
+
+        public string CalculateHot(double currentHotWater, double previousHotWater, double hotWaterCostPerCube)
+        {
+            return $"{currentHotWater - previousHotWater} x {hotWaterCostPerCube}₽ = {(currentHotWater - previousHotWater) * hotWaterCostPerCube}₽";
+        }
+
+        public void CalculateCold()
+        {
+
+        }
+
+        public void CalculateElectricity()
+        {
+
+        }
     }
 }

@@ -49,17 +49,19 @@ namespace CommunalPayments.MainWindow
 
         private void HotWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            double hotWater;
-            if(double.TryParse(HotWaterInput.Text, out hotWater))
+            double currentHotWater;
+            double previousHotWater = data.HotWater;
+            double hotWaterCostPerCube = settings.HotWaterCostPerCube;
+            if (double.TryParse(HotWaterInput.Text, out currentHotWater))
             {
-                hotWater = double.Parse(HotWaterInput.Text);
+                currentHotWater = double.Parse(HotWaterInput.Text);
             }
             else
             {
-                hotWater = 0;
+                currentHotWater = 0;
             }
             CurrentHot.Content = HotWaterInput.Text;
-            CalculateHot.Content = $"{hotWater - data.HotWater} x {settings.HotWaterCostPerCube}₽ = {(hotWater - data.HotWater) * settings.HotWaterCostPerCube}₽";
+            CalculateHot.Content = data.CalculateHot(currentHotWater, previousHotWater, hotWaterCostPerCube);
         }
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

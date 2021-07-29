@@ -28,5 +28,10 @@ namespace CommunalPayments.MainWindow
         {
             Close();
         }
+
+        private void UpdateAfterChangeSettings()
+        {
+
+        }
     }
 }
