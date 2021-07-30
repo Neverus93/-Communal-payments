@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows;
-using System.Xml.Serialization;
 
 namespace CommunalPayments.MainWindow
 {
