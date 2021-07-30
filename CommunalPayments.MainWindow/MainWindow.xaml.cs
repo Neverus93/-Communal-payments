@@ -61,37 +61,41 @@ namespace CommunalPayments.MainWindow
                 currentHotWater = 0;
             }
             CurrentHot.Content = HotWaterInput.Text;
-            CalculateHot.Content = data.CalculateHot(currentHotWater, previousHotWater, hotWaterCostPerCube);
+            CalculateHot.Content = data.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube);
         }
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            double coldWater;
-            if (double.TryParse(ColdWaterInput.Text, out coldWater))
+            double currentColdWater;
+            double previousColdWater = data.ColdWater;
+            double coldWaterCostPerCube = settings.ColdWaterCostPerCube;
+            if (double.TryParse(ColdWaterInput.Text, out currentColdWater))
             {
-                coldWater = double.Parse(ColdWaterInput.Text);
+                currentColdWater = double.Parse(ColdWaterInput.Text);
             }
             else
             {
-                coldWater = 0;
+                currentColdWater = 0;
             }
             CurrentCold.Content = ColdWaterInput.Text;
-            CalculateCold.Content = $"{coldWater - data.ColdWater} x {settings.ColdWaterCostPerCube}₽ = {(coldWater - data.ColdWater) * settings.ColdWaterCostPerCube}₽";
+            CalculateCold.Content = data.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube);
         }
 
         private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            double electricity;
-            if (double.TryParse(ElectricityInput.Text, out electricity))
+            double currentElectricity;
+            double previousElectricity = data.Electricity;
+            double electricityCostPerKwt = settings.ElectricityCostPerKwt;
+            if (double.TryParse(ElectricityInput.Text, out currentElectricity))
             {
-                electricity = double.Parse(ElectricityInput.Text);
+                currentElectricity = double.Parse(ElectricityInput.Text);
             }
             else
             {
-                electricity = 0;
+                currentElectricity = 0;
             }
             CurrentElecricity.Content = ElectricityInput.Text;
-            CalculateElecricity.Content = $"{electricity - data.Electricity} x {settings.ElectricityCostPerKwt}₽ = {(electricity - data.Electricity) * settings.ElectricityCostPerKwt}₽";
+            CalculateElecricity.Content = data.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt);
         }
 
         private void SettingsCalling_Click(object sender, RoutedEventArgs e)

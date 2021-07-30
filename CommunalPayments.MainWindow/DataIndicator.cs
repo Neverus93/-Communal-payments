@@ -43,19 +43,15 @@ namespace CommunalPayments.MainWindow
             }
         }
 
-        public string CalculateHot(double currentHotWater, double previousHotWater, double hotWaterCostPerCube)
+        public string CalculateCost(double currentIndicator, double previousIndicator, double costIndicator)
         {
-            return $"{currentHotWater - previousHotWater} x {hotWaterCostPerCube}₽ = {(currentHotWater - previousHotWater) * hotWaterCostPerCube}₽";
-        }
-
-        public void CalculateCold()
-        {
-
-        }
-
-        public void CalculateElectricity()
-        {
-
+            double differenceBetweenCurrentAndPrevious = currentIndicator - previousIndicator;
+            if(currentIndicator < previousIndicator)
+            {
+                differenceBetweenCurrentAndPrevious = 0;
+            }
+            string calculateCost = $"{differenceBetweenCurrentAndPrevious} x {costIndicator}₽ = {differenceBetweenCurrentAndPrevious * costIndicator}₽";
+            return calculateCost;
         }
     }
 }
