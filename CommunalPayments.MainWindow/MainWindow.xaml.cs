@@ -10,6 +10,8 @@ namespace CommunalPayments.MainWindow
     {
         DataIndicator data = new DataIndicator();
         SettingsCost settings = new SettingsCost();
+        double currentColdWater;
+        double currentHotWater;
         private readonly string indicatorPath = "DataIndicator.xml";
         private readonly string settingsPath = "Settings.xml";
         public MainWindow()
@@ -48,22 +50,28 @@ namespace CommunalPayments.MainWindow
 
         private void HotWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            double currentHotWater;
             double previousHotWater = data.HotWater;
             double hotWaterCostPerCube = settings.HotWaterCostPerCube;
+            double previousSum = data.HotWater + data.ColdWater;
+            double waterSumCost = settings.WaterSumCost;
             TryParseFunction(HotWaterInput.Text, out currentHotWater);
+            double currentSum = currentHotWater + currentColdWater;
             CurrentHot.Content = HotWaterInput.Text;
             CalculateHot.Content = data.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube);
+            CalculateWaterSummator.Content = data.CalculateCost(currentSum, previousSum, waterSumCost);
         }
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            double currentColdWater;
             double previousColdWater = data.ColdWater;
             double coldWaterCostPerCube = settings.ColdWaterCostPerCube;
+            double previousSum = data.HotWater + data.ColdWater;
+            double waterSumCost = settings.WaterSumCost;
             TryParseFunction(ColdWaterInput.Text, out currentColdWater);
+            double currentSum = currentHotWater + currentColdWater;
             CurrentCold.Content = ColdWaterInput.Text;
             CalculateCold.Content = data.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube);
+            CalculateWaterSummator.Content = data.CalculateCost(currentSum, previousSum, waterSumCost);
         }
 
         private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
