@@ -19,8 +19,9 @@ namespace CommunalPayments.MainWindow
             double hotWaterCost = double.Parse(HotWaterCostPerCube.Text);
             double electricityCost = double.Parse(ElectricityCostPerKwt.Text);
             double internetCost = double.Parse(InternetCost.Text);
+            double waterSumCost = double.Parse(WaterSumCost.Text);
 
-            settings.SaveSettings(coldWaterCost, hotWaterCost, electricityCost, internetCost);
+            settings.SaveSettings(coldWaterCost, hotWaterCost, electricityCost, internetCost, waterSumCost);
             Close();
         }
 

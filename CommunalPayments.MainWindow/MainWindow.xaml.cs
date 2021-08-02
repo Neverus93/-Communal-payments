@@ -26,7 +26,7 @@ namespace CommunalPayments.MainWindow
 
             if (!File.Exists(settingsPath))
             {
-                settings.SaveSettings(0, 0, 0, 0);
+                settings.SaveSettings(0, 0, 0, 0, 0);
             }
             else
             {
@@ -51,14 +51,7 @@ namespace CommunalPayments.MainWindow
             double currentHotWater;
             double previousHotWater = data.HotWater;
             double hotWaterCostPerCube = settings.HotWaterCostPerCube;
-            if (double.TryParse(HotWaterInput.Text, out currentHotWater))
-            {
-                currentHotWater = double.Parse(HotWaterInput.Text);
-            }
-            else
-            {
-                currentHotWater = 0;
-            }
+            TryParseFunction(HotWaterInput.Text, out currentHotWater);
             CurrentHot.Content = HotWaterInput.Text;
             CalculateHot.Content = data.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube);
         }
@@ -68,14 +61,7 @@ namespace CommunalPayments.MainWindow
             double currentColdWater;
             double previousColdWater = data.ColdWater;
             double coldWaterCostPerCube = settings.ColdWaterCostPerCube;
-            if (double.TryParse(ColdWaterInput.Text, out currentColdWater))
-            {
-                currentColdWater = double.Parse(ColdWaterInput.Text);
-            }
-            else
-            {
-                currentColdWater = 0;
-            }
+            TryParseFunction(ColdWaterInput.Text, out currentColdWater);
             CurrentCold.Content = ColdWaterInput.Text;
             CalculateCold.Content = data.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube);
         }
@@ -85,14 +71,7 @@ namespace CommunalPayments.MainWindow
             double currentElectricity;
             double previousElectricity = data.Electricity;
             double electricityCostPerKwt = settings.ElectricityCostPerKwt;
-            if (double.TryParse(ElectricityInput.Text, out currentElectricity))
-            {
-                currentElectricity = double.Parse(ElectricityInput.Text);
-            }
-            else
-            {
-                currentElectricity = 0;
-            }
+            TryParseFunction(ElectricityInput.Text, out currentElectricity);
             CurrentElecricity.Content = ElectricityInput.Text;
             CalculateElecricity.Content = data.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt);
         }
@@ -101,6 +80,18 @@ namespace CommunalPayments.MainWindow
         {
             CostSettings costSettings = new CostSettings();
             costSettings.Show();
+        }
+
+        private void TryParseFunction(string text, out double result)
+        {
+            if (double.TryParse(text, out result))
+            {
+                result = double.Parse(text);
+            }
+            else
+            {
+                result = 0;
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace CommunalPayments.MainWindow
         public double HotWaterCostPerCube { get; set; } = 0;
         public double ElectricityCostPerKwt { get; set; } = 0;
         public double InternetCost { get; set; } = 0;
+        public double WaterSumCost { get; set; } = 0;
 
         XmlSerializer formatterCost = new XmlSerializer(typeof(SettingsCost));
 
@@ -19,17 +20,18 @@ namespace CommunalPayments.MainWindow
 
         }
 
-        public SettingsCost(double coldWaterCost, double hotWaterCost, double electricityCost, double internetCost)
+        public SettingsCost(double coldWaterCost, double hotWaterCost, double electricityCost, double internetCost, double waterSumCost)
         {
             ColdWaterCostPerCube = coldWaterCost;
             HotWaterCostPerCube = hotWaterCost;
             ElectricityCostPerKwt = electricityCost;
             InternetCost = internetCost;
+            WaterSumCost = waterSumCost;
         }
 
-        public void SaveSettings(double coldCost, double hotCost, double electricityCost, double internetCost)
+        public void SaveSettings(double coldCost, double hotCost, double electricityCost, double internetCost, double waterSumCost)
         {
-            SettingsCost settings = new SettingsCost(coldCost, hotCost, electricityCost, internetCost);
+            SettingsCost settings = new SettingsCost(coldCost, hotCost, electricityCost, internetCost, waterSumCost);
 
             using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
             {
