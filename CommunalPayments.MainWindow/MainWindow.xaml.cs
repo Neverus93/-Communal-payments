@@ -6,8 +6,8 @@ namespace CommunalPayments.MainWindow
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    delegate double IndicatorHandler(double cold, double hot, double electricity, double summator, double internet);
-    delegate SettingsCost SettingsHandler();
+    //delegate double IndicatorHandler(double cold, double hot, double electricity, double summator, double internet);
+    //delegate SettingsCost SettingsHandler();
     public partial class MainWindow : Window
     {
         #region TODO events
@@ -23,7 +23,7 @@ namespace CommunalPayments.MainWindow
         DataIndicator data = new DataIndicator();
         SettingsCost settings = new SettingsCost();
 
-        IndicatorHandler indicatorHandler = new IndicatorHandler(DataIndicator.OverallCalculate);
+        //IndicatorHandler indicatorHandler = new IndicatorHandler(DataIndicator.OverallCalculate);
         double currentColdWater;
         double currentHotWater;
 
@@ -58,7 +58,6 @@ namespace CommunalPayments.MainWindow
             PreviousHot.Content = data.HotWater;
             PreviousElecricity.Content = data.Electricity;
             CalculateInternet.Content = settings.InternetCost;
-            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void SaveCalling_Click(object sender, RoutedEventArgs e)
@@ -82,6 +81,7 @@ namespace CommunalPayments.MainWindow
 
             CalculateHot.Content = DataIndicator.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube, out resultHot);
             CalculateWaterSummator.Content = DataIndicator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
+            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -97,6 +97,7 @@ namespace CommunalPayments.MainWindow
 
             CalculateCold.Content = DataIndicator.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube, out resultCold);
             CalculateWaterSummator.Content = DataIndicator.CalculateCost(currentSum, previousSum, waterSumCost, out resultSummator);
+            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -109,6 +110,7 @@ namespace CommunalPayments.MainWindow
             CurrentElecricity.Content = ElectricityInput.Text;
 
             CalculateElecricity.Content = DataIndicator.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt, out resultElectricity);
+            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void SettingsCalling_Click(object sender, RoutedEventArgs e)
