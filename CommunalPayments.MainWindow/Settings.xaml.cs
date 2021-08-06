@@ -22,17 +22,7 @@ namespace CommunalPayments.MainWindow
             double waterSumCost = double.Parse(WaterSumCost.Text);
 
             settings.SaveSettings(coldWaterCost, hotWaterCost, electricityCost, internetCost, waterSumCost);
-            Close();
-        }
-
-        private void CancellationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void UpdateAfterChangeSettings()
-        {
-
+            DialogResult = true;
         }
     }
 }
