@@ -59,6 +59,7 @@ namespace CommunalPayments.MainWindow
             PreviousHot.Content = data.HotWater;
             PreviousElecricity.Content = data.Electricity;
             CalculateInternet.Content = settings.InternetCost;
+            SaveCalling.IsEnabled = false;
         }
 
         private void SaveCalling_Click(object sender, RoutedEventArgs e)
@@ -67,10 +68,19 @@ namespace CommunalPayments.MainWindow
             double hotWater = double.Parse(HotWaterInput.Text);
             double electricity = double.Parse(ElectricityInput.Text);
             data.SaveData(coldWater, hotWater, electricity);
+            MessageBox.Show("Данные успешно сохранены в базу данных!");
         }
 
         private void HotWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            if(HotWaterInput.Text.Length != 0 && ColdWaterInput.Text.Length != 0 && ElectricityInput.Text.Length != 0)
+            {
+                SaveCalling.IsEnabled = true;
+            }
+            else
+            {
+                SaveCalling.IsEnabled = false;
+            }
             double previousHotWater = data.HotWater;
             double hotWaterCostPerCube = settings.HotWaterCostPerCube;
             double previousSummator = data.HotWater + data.ColdWater;
@@ -87,6 +97,14 @@ namespace CommunalPayments.MainWindow
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            if(HotWaterInput.Text.Length != 0 && ColdWaterInput.Text.Length != 0 && ElectricityInput.Text.Length != 0)
+            {
+                SaveCalling.IsEnabled = true;
+            }
+            else
+            {
+                SaveCalling.IsEnabled = false;
+            }
             double previousColdWater = data.ColdWater;
             double coldWaterCostPerCube = settings.ColdWaterCostPerCube;
             double previousSummator = data.HotWater + data.ColdWater;
@@ -103,6 +121,14 @@ namespace CommunalPayments.MainWindow
 
         private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
+            if(HotWaterInput.Text.Length != 0 && ColdWaterInput.Text.Length != 0 && ElectricityInput.Text.Length != 0)
+            {
+                SaveCalling.IsEnabled = true;
+            }
+            else
+            {
+                SaveCalling.IsEnabled = false;
+            }
             double previousElectricity = data.Electricity;
             double electricityCostPerKwt = settings.ElectricityCostPerKwt;
 
