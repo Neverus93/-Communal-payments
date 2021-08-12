@@ -44,12 +44,12 @@ namespace CommunalPayments.MainWindow
             }
             else
             {
-                data.SaveData(0, 0, 0);
+                data.SaveData();
             }
 
             if (!File.Exists(settingsPath))
             {
-                settings.SaveSettings(0, 0, 0, 0, 0);
+                settings.SaveSettings();
             }
             else
             {
@@ -64,10 +64,10 @@ namespace CommunalPayments.MainWindow
 
         private void SaveCalling_Click(object sender, RoutedEventArgs e)
         {
-            double coldWater = double.Parse(ColdWaterInput.Text);
-            double hotWater = double.Parse(HotWaterInput.Text);
-            double electricity = double.Parse(ElectricityInput.Text);
-            data.SaveData(coldWater, hotWater, electricity);
+            data.ColdWater = double.Parse(ColdWaterInput.Text);
+            data.HotWater = double.Parse(HotWaterInput.Text);
+            data.Electricity = double.Parse(ElectricityInput.Text);
+            data.SaveData();
             MessageBox.Show("Данные успешно сохранены в базу данных!");
         }
 
@@ -90,9 +90,9 @@ namespace CommunalPayments.MainWindow
             double currentSummator = currentHotWater + currentColdWater;
             CurrentHot.Content = HotWaterInput.Text;
 
-            CalculateHot.Content = DataIndicator.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube, out resultHot);
-            CalculateWaterSummator.Content = DataIndicator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
-            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
+            CalculateHot.Content = Calculator.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube, out resultHot);
+            CalculateWaterSummator.Content = Calculator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
+            CalculateScore.Content = Calculator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void ColdWaterInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -114,9 +114,9 @@ namespace CommunalPayments.MainWindow
             double currentSummator = currentHotWater + currentColdWater;
             CurrentCold.Content = ColdWaterInput.Text;
 
-            CalculateCold.Content = DataIndicator.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube, out resultCold);
-            CalculateWaterSummator.Content = DataIndicator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
-            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
+            CalculateCold.Content = Calculator.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube, out resultCold);
+            CalculateWaterSummator.Content = Calculator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
+            CalculateScore.Content = Calculator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void ElectricityInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -135,8 +135,8 @@ namespace CommunalPayments.MainWindow
             TryParseFunction(ElectricityInput.Text, out currentElectricity);
             CurrentElecricity.Content = ElectricityInput.Text;
 
-            CalculateElecricity.Content = DataIndicator.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt, out resultElectricity);
-            CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
+            CalculateElecricity.Content = Calculator.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt, out resultElectricity);
+            CalculateScore.Content = Calculator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
         }
 
         private void SettingsCalling_Click(object sender, RoutedEventArgs e)
@@ -159,11 +159,11 @@ namespace CommunalPayments.MainWindow
                 double waterSummatorCost = settings.WaterSumCost;
 
                 CalculateInternet.Content = settings.InternetCost;
-                CalculateCold.Content = DataIndicator.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube, out resultCold);
-                CalculateHot.Content = DataIndicator.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube, out resultHot);
-                CalculateElecricity.Content = DataIndicator.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt, out resultElectricity);
-                CalculateWaterSummator.Content = DataIndicator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
-                CalculateScore.Content = DataIndicator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
+                CalculateCold.Content = Calculator.CalculateCost(currentColdWater, previousColdWater, coldWaterCostPerCube, out resultCold);
+                CalculateHot.Content = Calculator.CalculateCost(currentHotWater, previousHotWater, hotWaterCostPerCube, out resultHot);
+                CalculateElecricity.Content = Calculator.CalculateCost(currentElectricity, previousElectricity, electricityCostPerKwt, out resultElectricity);
+                CalculateWaterSummator.Content = Calculator.CalculateCost(currentSummator, previousSummator, waterSummatorCost, out resultSummator);
+                CalculateScore.Content = Calculator.OverallCalculate(resultCold, resultHot, resultElectricity, resultSummator, settings.InternetCost);
             }
         }
 
