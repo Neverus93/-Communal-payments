@@ -21,7 +21,7 @@ namespace CommunalPayments.MainWindow
             settings.InternetCost = double.Parse(InternetCost.Text);
             settings.WaterSumCost = double.Parse(WaterSumCost.Text);
 
-            settings.SaveSettings();
+            settings.SaveSettings(settings);
             DialogResult = true;
         }
     }

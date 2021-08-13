@@ -15,24 +15,23 @@ namespace CommunalPayments.MainWindow
 
         public DataIndicator()
         {
-
+            
         }
 
-        public void SaveData()
+        public void SaveData(DataIndicator data)
         {
-            DataIndicator data = new DataIndicator();
-
             using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
             {
                 formatterData.Serialize(fs, data);
             }
         }
 
-        public void GetData(out DataIndicator data)
+        public DataIndicator GetData()
         {
             using (FileStream fs = new FileStream("DataIndicator.xml", FileMode.OpenOrCreate))
             {
-                data = (DataIndicator)formatterData.Deserialize(fs);
+                DataIndicator data = (DataIndicator)formatterData.Deserialize(fs);
+                return data;
             }
         }
     }

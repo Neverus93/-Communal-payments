@@ -40,20 +40,20 @@ namespace CommunalPayments.MainWindow
             InitializeComponent();
             if (File.Exists(indicatorPath))
             {
-                data.GetData(out data);
+                data = data.GetData();
             }
             else
             {
-                data.SaveData();
+                data.SaveData(data);
             }
 
             if (!File.Exists(settingsPath))
             {
-                settings.SaveSettings();
+                settings.SaveSettings(settings);
             }
             else
             {
-                settings.GetSettings(out settings);
+                settings = settings.GetSettings();
             }
             PreviousCold.Content = data.ColdWater;
             PreviousHot.Content = data.HotWater;
@@ -67,7 +67,7 @@ namespace CommunalPayments.MainWindow
             data.ColdWater = double.Parse(ColdWaterInput.Text);
             data.HotWater = double.Parse(HotWaterInput.Text);
             data.Electricity = double.Parse(ElectricityInput.Text);
-            data.SaveData();
+            data.SaveData(data);
             MessageBox.Show("Данные успешно сохранены в базу данных!");
         }
 
@@ -145,7 +145,7 @@ namespace CommunalPayments.MainWindow
 
             if (costSettings.ShowDialog() == true)
             {
-                settings.GetSettings(out settings);
+                settings = settings.GetSettings();
                 double previousHotWater = data.HotWater;
                 double previousColdWater = data.ColdWater;
                 double previousElectricity = data.Electricity;
