@@ -15,14 +15,14 @@ namespace CommunalPayments.MainWindow
 
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            //double coldWaterCost = double.Parse(ColdWaterCostPerCube.Text);
-            //double hotWaterCost = double.Parse(HotWaterCostPerCube.Text);
-            //double electricityCost = double.Parse(ElectricityCostPerKwt.Text);
-            //double internetCost = double.Parse(InternetCost.Text);
-            //double waterSumCost = double.Parse(WaterSumCost.Text);
+            settings.ColdWaterCostPerCube = double.Parse(ColdWaterCostPerCube.Text);
+            settings.HotWaterCostPerCube = double.Parse(HotWaterCostPerCube.Text);
+            settings.ElectricityCostPerKwt = double.Parse(ElectricityCostPerKwt.Text);
+            settings.InternetCost = double.Parse(InternetCost.Text);
+            settings.WaterSumCost = double.Parse(WaterSumCost.Text);
 
-            //settings.SaveSettings(coldWaterCost, hotWaterCost, electricityCost, internetCost, waterSumCost);
-            //DialogResult = true;
+            settings.SaveSettings(settings);
+            DialogResult = true;
         }
     }
 }

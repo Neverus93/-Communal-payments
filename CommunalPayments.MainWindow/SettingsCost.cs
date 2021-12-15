@@ -20,21 +20,20 @@ namespace CommunalPayments.MainWindow
 
         }
 
-        public void SaveSettings()
+        public void SaveSettings(SettingsCost settings)
         {
-            SettingsCost settings = new SettingsCost();
-
             using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
             {
                 formatterCost.Serialize(fs, settings);
             }
         }
 
-        public void GetSettings(out SettingsCost dataCost)
+        public SettingsCost GetSettings()
         {
             using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
             {
-                dataCost = (SettingsCost)formatterCost.Deserialize(fs);
+                SettingsCost dataCost = (SettingsCost)formatterCost.Deserialize(fs);
+                return dataCost;
             }
         }
     }
