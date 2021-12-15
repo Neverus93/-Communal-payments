@@ -6,24 +6,11 @@ namespace CommunalPayments.MainWindow
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    //delegate double IndicatorHandler(double cold, double hot, double electricity, double summator, double internet);
-    //delegate SettingsCost SettingsHandler();
     public partial class MainWindow : Window
     {
-        #region TODO events
-        //event IndicatorHandler ColdWaterIndicatorChanged;
-        //event IndicatorHandler HotWaterIndicatorChanged;
-        //event IndicatorHandler ElectricityIndicatorChanged;
-        //event IndicatorHandler WaterSummatorChanged;
-        //event IndicatorHandler InternetCostChanged;
-
-        //event SettingsHandler SettingsShanged;
-        #endregion
-
         DataIndicator data = new DataIndicator();
         SettingsCost settings = new SettingsCost();
 
-        //IndicatorHandler indicatorHandler = new IndicatorHandler(DataIndicator.OverallCalculate);
         double currentColdWater;
         double currentHotWater;
         double currentElectricity;
@@ -49,7 +36,7 @@ namespace CommunalPayments.MainWindow
 
             if (!File.Exists(settingsPath))
             {
-                settings.SaveSettings(0, 0, 0, 0, 0);
+                settings.SaveSettings();
             }
             else
             {
