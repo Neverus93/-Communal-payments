@@ -56,11 +56,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Calculator.cs" />
-    <Compile Include="IndicatorEventArgs.cs" />
+    <Compile Include="Interfaces\ICostCalculator.cs" />
+    <Compile Include="Model\Calculator.cs" />
+    <Compile Include="Model\Indicator.cs" />
+    <Compile Include="Model\Settings.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsCost.cs" />
+    <Compile Include="ViewModel\ApplicationInfoViewModel.cs" />
+    <Compile Include="ViewModel\CommunalPaymentsViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,8 +112,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
+    <Folder Include="Command\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
