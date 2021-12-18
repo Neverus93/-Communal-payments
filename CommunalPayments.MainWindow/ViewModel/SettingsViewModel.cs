@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunalPayments.MainWindow.Model;
+using CommunalPayments.MainWindow.Command;
+using CommunalPayments.MainWindow.Interfaces;
+using System.Xml.Serialization;
 
 namespace CommunalPayments.MainWindow.ViewModel
 {
-    class SettingsViewModel
+    class SettingsViewModel : IDoubleParser<SettingsInfo>
     {
-        //Будет содержать только команду сохранения настроек
+        public SettingsInfo SettingsInfo { get; set; }
+        public RelayCommand CallSettingsCommand { get; }
+
+        public SettingsViewModel()
+        {
+            CallSettingsCommand = new RelayCommand(SaveSettingsClick);
+            SettingsInfo = new SettingsInfo();
+        }
+
+        private void SaveSettingsClick(object parameter)
+        {
+            XmlSerializer formatterCost = new XmlSerializer(typeof(SettingsInfo));
+
+
+        }
+
+        public SettingsInfo DoubleParse(params string[] parameters)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
