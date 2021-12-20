@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunalPayments.MainWindow.Model;
+using System.ComponentModel;
 
 namespace CommunalPayments.MainWindow.ViewModel
 {
-    class CommunalPaymentsViewModel
+    class CommunalPaymentsViewModel : INotifyPropertyChanged
     {
-        //Будет содержать все основные биндинги и команду сохранения данных показателей
+        private IndicatorInfo[] indicators;
+        public IndicatorInfo[] Indicators { get; private set; }
+        public CommunalPaymentsViewModel()
+        {
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

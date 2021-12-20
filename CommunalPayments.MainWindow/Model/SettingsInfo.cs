@@ -1,9 +1,10 @@
 ﻿using System;
 
+
 namespace CommunalPayments.MainWindow.Model
 {
     [Serializable]
-    class SettingsInfo
+    public class SettingsInfo
     {
         public double ColdWaterPerCubeCost { get; set; }
         public double HotWaterPerCubeCost { get; set; }

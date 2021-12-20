@@ -9,15 +9,15 @@
     <Grid>
         <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,40,0,0" Width="311" Height="190" VerticalAlignment="Top">
             <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
-            <TextBox x:Name="HotWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="HotWaterInput_TextChanged"/>
+            <TextBox x:Name="HotWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ColdWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="ColdWaterInput_TextChanged"/>
+            <TextBox x:Name="ColdWaterInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ElectricityInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291" TextChanged="ElectricityInput_TextChanged"/>
+            <TextBox x:Name="ElectricityInput" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
         </StackPanel>
         <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
-            <Button x:Name="SaveCalling" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100" Click="SaveCalling_Click"/>
-            <Button x:Name="SettingsCalling" Content="Настройки" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100" Click="SettingsCalling_Click"/>
+            <Button x:Name="SaveCalling" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+            <Button x:Name="SettingsCalling" Content="Настройки" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100"/>
             <Button x:Name="InfoCalling" Content="О программе" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
         </StackPanel>
         <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="89" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">

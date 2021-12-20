@@ -64,7 +64,6 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsCost.cs" />
     <Compile Include="ViewModel\ApplicationInfoViewModel.cs" />
     <Compile Include="ViewModel\CommunalPaymentsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />

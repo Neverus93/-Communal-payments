@@ -3,20 +3,23 @@ using CommunalPayments.MainWindow.Command;
 using CommunalPayments.MainWindow.Interfaces;
 using System.Xml.Serialization;
 using System.IO;
+using System.ComponentModel;
 
 namespace CommunalPayments.MainWindow.ViewModel
 {
-    class SettingsViewModel : IDoubleParser<SettingsInfo>
+    class SettingsViewModel : IDoubleParser<SettingsInfo>, INotifyPropertyChanged
     {
         public SettingsInfo SettingsInfo { get; set; }
         public RelayCommand CallSettingsCommand { get; }
 
         XmlSerializer formatterCost = new XmlSerializer(typeof(SettingsInfo));
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public SettingsViewModel()
         {
             CallSettingsCommand = new RelayCommand(SaveSettingsClick);
-            SettingsInfo = new SettingsInfo();
+            SettingsInfo = GetSettings();
         }
 
         private void SaveSettingsClick(object parameter)
@@ -28,7 +31,7 @@ namespace CommunalPayments.MainWindow.ViewModel
             throw new System.NotImplementedException();
         }
 
-        private void SaveSettings(SettingsCost settings)
+        private void SaveSettings(SettingsInfo settings)
         {
             using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
             {
@@ -36,11 +39,11 @@ namespace CommunalPayments.MainWindow.ViewModel
             }
         }
 
-        private SettingsCost GetSettings()
+        private SettingsInfo GetSettings()
         {
             using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
             {
-                SettingsCost dataCost = (SettingsCost)formatterCost.Deserialize(fs);
+                SettingsInfo dataCost = (SettingsInfo)formatterCost.Deserialize(fs);
                 return dataCost;
             }
         }
