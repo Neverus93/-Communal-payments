@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.ComponentModel;
 
-namespace CommunalPayments.MainWindow.ViewModel
+namespace CommunalPayments.ViewModels
 {
     class SettingsViewModel : IDoubleParser<SettingsInfo>, INotifyPropertyChanged
     {

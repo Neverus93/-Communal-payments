@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CommunalPayments.MainWindow
+namespace CommunalPayments.Views
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

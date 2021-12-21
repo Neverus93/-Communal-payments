@@ -1,7 +1,7 @@
 ﻿using CommunalPayments.MainWindow.Model;
 using System.ComponentModel;
 
-namespace CommunalPayments.MainWindow.ViewModel
+namespace CommunalPayments.ViewModels
 {
     class CommunalPaymentsViewModel : INotifyPropertyChanged
     {

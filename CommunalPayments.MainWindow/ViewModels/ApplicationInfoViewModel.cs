@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommunalPayments.MainWindow.ViewModel
+namespace CommunalPayments.ViewModels
 {
     class ApplicationInfoViewModel
     {
