@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunalPayments", "CommunalPayments.MainWindow\CommunalPayments.csproj", "{25CB516A-5462-4CAD-8B1C-738E8765431B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunalPayments", "CommunalPayments\CommunalPayments.csproj", "{25CB516A-5462-4CAD-8B1C-738E8765431B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
