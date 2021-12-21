@@ -57,7 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Helpers\Calculator.cs" />
-    <Compile Include="Interfaces\IDoubleParser.cs" />
+    <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Models\IndicatorInfo.cs" />
     <Compile Include="Models\SettingsInfo.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
@@ -109,6 +109,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,8 +5,6 @@ namespace CommunalPayments.ViewModels
 {
     class CommunalPaymentsViewModel : INotifyPropertyChanged
     {
-        private IndicatorInfo[] indicators;
-        public IndicatorInfo[] Indicators { get; private set; }
         public CommunalPaymentsViewModel()
         {
 

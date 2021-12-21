@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace CommunalPayments.MainWindow.Model
 {
     [Serializable]
@@ -11,5 +10,20 @@ namespace CommunalPayments.MainWindow.Model
         public double ElectricityPerKwtCost { get; set; }
         public double InternetCost { get; set; }
         public double WaterSumCost { get; set; }
+
+        public SettingsInfo()
+        {
+
+        }
+
+        public SettingsInfo(double coldWaterPerCubeCost, double hotWaterPerCubeCost, 
+            double electricityPerKwtCost, double internetCost, double waterSumCost)
+        {
+            ColdWaterPerCubeCost = coldWaterPerCubeCost;
+            HotWaterPerCubeCost = hotWaterPerCubeCost;
+            ElectricityPerKwtCost = electricityPerKwtCost;
+            InternetCost = internetCost;
+            WaterSumCost = waterSumCost;
+        }
     }
 }

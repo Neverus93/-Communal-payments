@@ -1,51 +1,34 @@
 ﻿using CommunalPayments.MainWindow.Model;
 using CommunalPayments.MainWindow.Command;
-using CommunalPayments.MainWindow.Interfaces;
-using System.Xml.Serialization;
-using System.IO;
-using System.ComponentModel;
+using CommunalPayments.Helpers;
 
 namespace CommunalPayments.ViewModels
 {
-    class SettingsViewModel : IDoubleParser<SettingsInfo>, INotifyPropertyChanged
+    class SettingsViewModel
     {
-        public SettingsInfo SettingsInfo { get; set; }
-        public RelayCommand CallSettingsCommand { get; }
+        public string ColdWaterPerCubeCostText { get; set; }
+        public string HotWaterPerCubeCostText { get; set; }
+        public string ElectricityPerKwtText { get; set; }
 
-        XmlSerializer formatterCost = new XmlSerializer(typeof(SettingsInfo));
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public RelayCommand SaveSettingsCommand { get; }
+        public RelayCommand CancelChangesCommand { get; }
 
         public SettingsViewModel()
         {
-            CallSettingsCommand = new RelayCommand(SaveSettingsClick);
-            SettingsInfo = GetSettings();
+            SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
+            CancelChangesCommand = new RelayCommand(CancelChangesClick);
         }
 
         private void SaveSettingsClick(object parameter)
         {
+            SettingsInfo settings = new SettingsInfo();
+            //TODO парсинг данных для сериализации
+            SerializeHelper<SettingsInfo>.Save(settings);
         }
 
-        public SettingsInfo DoubleParse(params string[] parameters)
+        private void CancelChangesClick(object parameter)
         {
-            throw new System.NotImplementedException();
-        }
-
-        private void SaveSettings(SettingsInfo settings)
-        {
-            using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
-            {
-                formatterCost.Serialize(fs, settings);
-            }
-        }
-
-        private SettingsInfo GetSettings()
-        {
-            using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
-            {
-                SettingsInfo dataCost = (SettingsInfo)formatterCost.Deserialize(fs);
-                return dataCost;
-            }
+            //TODO Как закрыть окно, если ты нуб в MVVM
         }
     }
 }
