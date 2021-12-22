@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Helpers\Calculator.cs" />
+    <Compile Include="Helpers\CalculateHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Models\IndicatorInfo.cs" />
     <Compile Include="Models\SettingsInfo.cs" />

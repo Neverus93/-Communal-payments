@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommunalPayments.MainWindow.Model
 {
-    class Calculator
+    class CalculateHelper
     {
     }
 }
