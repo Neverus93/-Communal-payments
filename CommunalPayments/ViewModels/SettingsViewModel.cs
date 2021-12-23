@@ -1,86 +1,31 @@
-﻿using CommunalPayments.MainWindow.Model;
-using CommunalPayments.MainWindow.Command;
+﻿using CommunalPayments.Models;
+using CommunalPayments.Command;
 using CommunalPayments.Helpers;
-using System.ComponentModel;
+using CommunalPayments.Views;
+using Prism.Mvvm;
 
 namespace CommunalPayments.ViewModels
 {
-    public class SettingsViewModel : INotifyPropertyChanged
+    public class SettingsViewModel : BindableBase
     {
-        private string coldWaterPerCubeCostText;
-        private string hotWaterPerCubeCostText;
-        private string electricityPerKwttext;
-        private string internetCostText;
-        private string waterSumCostText;
-        public string ColdWaterPerCubeCostText
-        {
-            get
-            {
-                return coldWaterPerCubeCostText;
-            }
-            set
-            {
-                coldWaterPerCubeCostText = value;
-                OnPropertyChanged("ColdWaterPerCubeCostText");
-            }
-        }
-        public string HotWaterPerCubeCostText
-        {
-            get
-            {
-                return hotWaterPerCubeCostText;
-            }
-            set
-            {
-                hotWaterPerCubeCostText = value;
-                OnPropertyChanged("HotWaterPerCubeCostText");
-            }
-        }
-        public string ElectricityPerKwtText
-        {
-            get
-            {
-                return electricityPerKwttext;
-            }
-            set
-            {
-                electricityPerKwttext = value;
-                OnPropertyChanged("ElectricityPerKwtText");
-            }
-        }
-        public string InternetCostText
-        {
-            get
-            {
-                return internetCostText;
-            }
-            set
-            {
-                internetCostText = value;
-                OnPropertyChanged("InternetCostText");
-            }
-        }
-        public string WaterSumCostText
-        {
-            get
-            {
-                return waterSumCostText;
-            }
-            set
-            {
-                waterSumCostText = value;
-                OnPropertyChanged("WaterSumCostText");
-            }
-        }
+        public string ColdWaterPerCubeCostText { get; set; }
+
+        public string HotWaterPerCubeCostText { get; set; }
+
+        public string ElectricityPerKwtText { get; set; }
+
+        public string InternetCostText { get; set; }
+
+        public string WaterSumCostText { get; set; }
 
         public RelayCommand SaveSettingsCommand { get; }
         public RelayCommand CancelChangesCommand { get; }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public SettingsViewModel()
         {
             SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
             CancelChangesCommand = new RelayCommand(CancelChangesClick);
+            //TODO Создание сущности с текстовыми свойствами
         }
 
         private void SaveSettingsClick(object parameter)
@@ -96,12 +41,9 @@ namespace CommunalPayments.ViewModels
 
         private void CancelChangesClick(object parameter)
         {
-            //TODO Как закрыть окно, если ты нуб в MVVM
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            SettingsView settingsViewWindow = new SettingsView();
+            settingsViewWindow.Close();
+            //TODO не срабатывает команда
         }
 
         private void TryParseFunction(string text, out double result)

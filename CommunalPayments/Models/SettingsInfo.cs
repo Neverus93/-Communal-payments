@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommunalPayments.MainWindow.Model
+namespace CommunalPayments.Models
 {
     [Serializable]
     public class SettingsInfo

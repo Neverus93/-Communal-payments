@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CommunalPayments.MainWindow.Command
+namespace CommunalPayments.Command
 {
     public class RelayCommand : ICommand
     {

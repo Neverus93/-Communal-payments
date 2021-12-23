@@ -1,56 +1,24 @@
 ﻿using System;
-using System.ComponentModel;
 
-namespace CommunalPayments.MainWindow.Model
+namespace CommunalPayments.Models
 {
     [Serializable]
-    class IndicatorInfo : INotifyPropertyChanged
+    class IndicatorInfo
     {
-        private double coldWaterIndicator;
-        private double hotWaterIndicator;
-        private double electricityIndicator;
+        public double ColdWaterIndicator { get; set; }
+        public double HotWaterIndicator { get; set; }
+        public double ElectricityIndicator { get; set; }
 
-        public double ColdWaterIndicator
+        public IndicatorInfo()
         {
-            get
-            {
-                return coldWaterIndicator;
-            }
-            set
-            {
-                coldWaterIndicator = value;
-                OnPropertyChanged("ColdWaterIndicator");
-            }
-        }
-        public double HotWaterIndicator
-        {
-            get
-            {
-                return hotWaterIndicator;
-            }
-            set
-            {
-                hotWaterIndicator = value;
-                OnPropertyChanged("HotWaterindicator");
-            }
-        }
-        public double ElectricityIndicator
-        {
-            get
-            {
-                return electricityIndicator;
-            }
-            set
-            {
-                electricityIndicator = value;
-                OnPropertyChanged("ElectricityIndicator");
-            }
+
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
+        public IndicatorInfo(double coldWaterIndicator, double hotWaterIndicator, double electricityIndicator)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ColdWaterIndicator = coldWaterIndicator;
+            HotWaterIndicator = hotWaterIndicator;
+            ElectricityIndicator = electricityIndicator;
         }
     }
 }
