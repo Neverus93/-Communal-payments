@@ -8,7 +8,7 @@ namespace CommunalPayments.Helpers
         public static void Save(T parameter)
         {
             XmlSerializer formatter = new XmlSerializer(typeof(T));
-            using (FileStream fs = new FileStream($"{typeof(T).GetType()}.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream($"{typeof(T).GetType()}.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, parameter);
             }

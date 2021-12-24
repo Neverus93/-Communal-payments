@@ -35,7 +35,7 @@ namespace CommunalPayments.ViewModels
                 //OnPropertyChanged("HotWaterIndicatorText");
             }
         }
-        public string Electricityindicatortext
+        public string ElectricityIndicatorText
         {
             get
             {
@@ -71,5 +71,25 @@ namespace CommunalPayments.ViewModels
         {
             //TODO как вызвать окно из ViewModel, когда ты нуб в MVVM
         }
+
+        private string coldWaterPerCubeCostText;
+
+        public string ColdWaterPerCubeCostText { get => coldWaterPerCubeCostText; set => SetProperty(ref coldWaterPerCubeCostText, value); }
+
+        private string hotWaterPerCubeCostText;
+
+        public string HotWaterPerCubeCostText { get => hotWaterPerCubeCostText; set => SetProperty(ref hotWaterPerCubeCostText, value); }
+
+        private string electricityPerKwtText;
+
+        public string ElectricityPerKwtText { get => electricityPerKwtText; set => SetProperty(ref electricityPerKwtText, value); }
+
+        private string waterSumCostText;
+
+        public string WaterSumCostText { get => waterSumCostText; set => SetProperty(ref waterSumCostText, value); }
+
+        private string internetCostText;
+
+        public string InternetCostText { get => internetCostText; set => SetProperty(ref internetCostText, value); }
     }
 }

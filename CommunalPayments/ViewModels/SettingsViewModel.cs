@@ -25,18 +25,18 @@ namespace CommunalPayments.ViewModels
         {
             SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
             CancelChangesCommand = new RelayCommand(CancelChangesClick);
-            //TODO Создание сущности с текстовыми свойствами
         }
 
         private void SaveSettingsClick(object parameter)
         {
             SettingsInfo settings = new SettingsInfo();
+            // парсинг происходит
             settings.ColdWaterPerCubeCost = double.Parse(ColdWaterPerCubeCostText);
             settings.HotWaterPerCubeCost = double.Parse(HotWaterPerCubeCostText);
             settings.ElectricityPerKwtCost = double.Parse(ElectricityPerKwtText);
             settings.InternetCost = double.Parse(InternetCostText);
             settings.WaterSumCost = double.Parse(WaterSumCostText);
-            SerializeHelper<SettingsInfo>.Save(settings);
+            SerializeHelper<SettingsInfo>.Save(settings); //не создаётся файл
         }
 
         private void CancelChangesClick(object parameter)
