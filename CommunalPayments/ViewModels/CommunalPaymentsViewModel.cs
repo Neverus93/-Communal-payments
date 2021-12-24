@@ -65,7 +65,7 @@ namespace CommunalPayments.ViewModels
         private void CallSettingsClick(object parameter)
         {
             SettingsView settingsViewWindow = new SettingsView();
-            settingsViewWindow.Show();
+            settingsViewWindow.ShowDialog();
         }
         private void CallApplicationInfoClick(object parameter)
         {

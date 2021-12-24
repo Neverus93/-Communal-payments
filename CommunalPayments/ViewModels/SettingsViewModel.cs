@@ -2,11 +2,10 @@
 using CommunalPayments.Command;
 using CommunalPayments.Helpers;
 using CommunalPayments.Views;
-using Prism.Mvvm;
 
 namespace CommunalPayments.ViewModels
 {
-    public class SettingsViewModel : BindableBase
+    public class SettingsViewModel
     {
         public string ColdWaterPerCubeCostText { get; set; }
 
@@ -41,9 +40,8 @@ namespace CommunalPayments.ViewModels
 
         private void CancelChangesClick(object parameter)
         {
-            SettingsView settingsViewWindow = new SettingsView();
-            settingsViewWindow.Close();
-            //TODO не срабатывает команда
+            SettingsView settingsView = new SettingsView();
+            settingsView.Close();
         }
 
         private void TryParseFunction(string text, out double result)
