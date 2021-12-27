@@ -8,7 +8,12 @@ namespace CommunalPayments.Helpers
         public static void Save(T parameter)
         {
             XmlSerializer formatter = new XmlSerializer(typeof(T));
-            using (FileStream fs = new FileStream($"{typeof(T).GetType()}.xml", FileMode.Create))
+            if (!Directory.Exists("Database"))
+            {
+                Directory.CreateDirectory("Database");
+            }
+            //TODO удалить CommunalPayments.Models. из начала названия файла
+            using (FileStream fs = new FileStream($"Database//{parameter.GetType()}.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, parameter);
             }
@@ -17,7 +22,7 @@ namespace CommunalPayments.Helpers
         public static T Get()
         {
             XmlSerializer formatter = new XmlSerializer(typeof(T));
-            using (FileStream fs = new FileStream($"{typeof(T).GetType()}.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream($"Database//{Get().GetType()}.xml", FileMode.OpenOrCreate))
             {
                 T dataCost = (T)formatter.Deserialize(fs);
                 return dataCost;

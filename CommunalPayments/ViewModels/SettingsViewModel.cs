@@ -2,6 +2,7 @@
 using CommunalPayments.Command;
 using CommunalPayments.Helpers;
 using CommunalPayments.Views;
+using System.Windows;
 
 namespace CommunalPayments.ViewModels
 {
@@ -18,30 +19,29 @@ namespace CommunalPayments.ViewModels
         public string WaterSumCostText { get; set; }
 
         public RelayCommand SaveSettingsCommand { get; }
-        public RelayCommand CancelChangesCommand { get; }
 
         public SettingsViewModel()
         {
             SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
-            CancelChangesCommand = new RelayCommand(CancelChangesClick);
         }
 
         private void SaveSettingsClick(object parameter)
         {
-            SettingsInfo settings = new SettingsInfo();
-            // парсинг происходит
-            settings.ColdWaterPerCubeCost = double.Parse(ColdWaterPerCubeCostText);
-            settings.HotWaterPerCubeCost = double.Parse(HotWaterPerCubeCostText);
-            settings.ElectricityPerKwtCost = double.Parse(ElectricityPerKwtText);
-            settings.InternetCost = double.Parse(InternetCostText);
-            settings.WaterSumCost = double.Parse(WaterSumCostText);
-            SerializeHelper<SettingsInfo>.Save(settings); //не создаётся файл
-        }
+            //TODO Реворкнуть покрасивее
+            double cold;
+            double hot;
+            double electricity;
+            double internet;
+            double waterSum;
+            TryParseFunction(ColdWaterPerCubeCostText, out cold);
+            TryParseFunction(HotWaterPerCubeCostText, out hot);
+            TryParseFunction(ElectricityPerKwtText, out electricity);
+            TryParseFunction(InternetCostText, out internet);
+            TryParseFunction(WaterSumCostText, out waterSum);
+            SettingsInfo settings = new SettingsInfo(cold, hot, electricity, internet, waterSum);
 
-        private void CancelChangesClick(object parameter)
-        {
-            SettingsView settingsView = new SettingsView();
-            settingsView.Close();
+            //TODO Переделать generic + сделать закрытие окна настроек после сохранения
+            SerializeHelper<SettingsInfo>.Save(settings);
         }
 
         private void TryParseFunction(string text, out double result)

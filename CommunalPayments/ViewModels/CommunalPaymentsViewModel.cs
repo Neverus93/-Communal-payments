@@ -44,7 +44,7 @@ namespace CommunalPayments.ViewModels
             set
             {
                 electricityindicatorText = value;
-                //OnPropertyChanged("ElectricityIndicatorText");
+                RaisePropertyChanged();
             }
         }
         public RelayCommand SaveIndicatorCommand { get; }
@@ -52,6 +52,8 @@ namespace CommunalPayments.ViewModels
         public RelayCommand CallApplicationInfoCommand { get; }
         public CommunalPaymentsViewModel()
         {
+            //TODO получить настойки для калькуляции
+            //TODO получить данные из файла показателей для заполнения полей и калькуляции
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
@@ -71,25 +73,5 @@ namespace CommunalPayments.ViewModels
         {
             //TODO как вызвать окно из ViewModel, когда ты нуб в MVVM
         }
-
-        private string coldWaterPerCubeCostText;
-
-        public string ColdWaterPerCubeCostText { get => coldWaterPerCubeCostText; set => SetProperty(ref coldWaterPerCubeCostText, value); }
-
-        private string hotWaterPerCubeCostText;
-
-        public string HotWaterPerCubeCostText { get => hotWaterPerCubeCostText; set => SetProperty(ref hotWaterPerCubeCostText, value); }
-
-        private string electricityPerKwtText;
-
-        public string ElectricityPerKwtText { get => electricityPerKwtText; set => SetProperty(ref electricityPerKwtText, value); }
-
-        private string waterSumCostText;
-
-        public string WaterSumCostText { get => waterSumCostText; set => SetProperty(ref waterSumCostText, value); }
-
-        private string internetCostText;
-
-        public string InternetCostText { get => internetCostText; set => SetProperty(ref internetCostText, value); }
     }
 }
