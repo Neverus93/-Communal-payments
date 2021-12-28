@@ -22,15 +22,15 @@
         <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="89" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">
             <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="448">
                 <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Холодная вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <TextBlock x:Name="PreviousCold" Text="" Width="349" Margin="2,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Горячая вода:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <TextBlock x:Name="PreviousHot" Text="" Width="359" Margin="2,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Электричество:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
+                    <TextBlock Text="Электричество: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <TextBlock x:Name="PreviousElecricity" Text="" Width="352" Margin="2,0,0,0" VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>

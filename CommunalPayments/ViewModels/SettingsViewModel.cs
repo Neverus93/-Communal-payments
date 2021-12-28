@@ -33,18 +33,19 @@ namespace CommunalPayments.ViewModels
             double electricity;
             double internet;
             double waterSum;
-            TryParseFunction(ColdWaterPerCubeCostText, out cold);
-            TryParseFunction(HotWaterPerCubeCostText, out hot);
-            TryParseFunction(ElectricityPerKwtText, out electricity);
-            TryParseFunction(InternetCostText, out internet);
-            TryParseFunction(WaterSumCostText, out waterSum);
+            PropertyTryParse(ColdWaterPerCubeCostText, out cold);
+            PropertyTryParse(HotWaterPerCubeCostText, out hot);
+            PropertyTryParse(ElectricityPerKwtText, out electricity);
+            PropertyTryParse(InternetCostText, out internet);
+            PropertyTryParse(WaterSumCostText, out waterSum);
             SettingsInfo settings = new SettingsInfo(cold, hot, electricity, internet, waterSum);
 
             //TODO Переделать generic + сделать закрытие окна настроек после сохранения
+            //https://www.cyberforum.ru/wpf-silverlight/thread2693735.html
             SerializeHelper<SettingsInfo>.Save(settings);
         }
 
-        private void TryParseFunction(string text, out double result)
+        private void PropertyTryParse(string text, out double result)
         {
             if (double.TryParse(text, out result))
             {

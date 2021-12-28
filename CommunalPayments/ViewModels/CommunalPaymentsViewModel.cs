@@ -66,6 +66,7 @@ namespace CommunalPayments.ViewModels
         }
         private void CallSettingsClick(object parameter)
         {
+            //https://www.cyberforum.ru/wpf-silverlight/thread2693735.html
             SettingsView settingsViewWindow = new SettingsView();
             settingsViewWindow.ShowDialog();
         }
