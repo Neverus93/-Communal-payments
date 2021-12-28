@@ -20,7 +20,7 @@ namespace CommunalPayments.ViewModels
             set
             {
                 coldWaterIndicatorText = value;
-                //OnPropertyChanged("ColdWaterIndicatorText");
+                RaisePropertyChanged();
             }
         }
         public string HotWaterIndicatorText
@@ -32,7 +32,7 @@ namespace CommunalPayments.ViewModels
             set
             {
                 hotWaterindicatorText = value;
-                //OnPropertyChanged("HotWaterIndicatorText");
+                RaisePropertyChanged();
             }
         }
         public string ElectricityIndicatorText
@@ -60,8 +60,8 @@ namespace CommunalPayments.ViewModels
         }
         private void SaveIndicatorClick(object parameter)
         {
-            IndicatorInfo indicator = new IndicatorInfo();
             //TODO парсинг данных с формы
+            IndicatorInfo indicator = new IndicatorInfo();
             SerializeHelper<IndicatorInfo>.Save(indicator);
         }
         private void CallSettingsClick(object parameter)
