@@ -8,48 +8,50 @@ namespace CommunalPayments.ViewModels
 {
     class CommunalPaymentsViewModel : BindableBase
     {
-        private string coldWaterIndicatorText;
-        private string hotWaterindicatorText;
-        private string electricityindicatorText;
-        public string ColdWaterIndicatorText
+        private decimal coldWaterIndicator;
+        private decimal hotWaterindicator;
+        private decimal electricityindicator;
+
+        public decimal ColdWaterIndicator
         {
             get
             {
-                return coldWaterIndicatorText;
+                return coldWaterIndicator;
             }
             set
             {
-                coldWaterIndicatorText = value;
+                coldWaterIndicator = value;
                 RaisePropertyChanged();
             }
         }
-        public string HotWaterIndicatorText
+        public decimal HotWaterIndicator
         {
             get
             {
-                return hotWaterindicatorText;
+                return hotWaterindicator;
             }
             set
             {
-                hotWaterindicatorText = value;
+                hotWaterindicator = value;
                 RaisePropertyChanged();
             }
         }
-        public string ElectricityIndicatorText
+        public decimal ElectricityIndicator
         {
             get
             {
-                return electricityindicatorText;
+                return electricityindicator;
             }
             set
             {
-                electricityindicatorText = value;
+                electricityindicator = value;
                 RaisePropertyChanged();
             }
         }
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
+
         public CommunalPaymentsViewModel()
         {
             //TODO получить настойки для калькуляции
@@ -58,18 +60,20 @@ namespace CommunalPayments.ViewModels
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
         }
+
         private void SaveIndicatorClick(object parameter)
         {
-            //TODO парсинг данных с формы
             IndicatorInfo indicator = new IndicatorInfo();
             SerializeHelper<IndicatorInfo>.Save(indicator);
         }
+
         private void CallSettingsClick(object parameter)
         {
-            //https://www.cyberforum.ru/wpf-silverlight/thread2693735.html
-            SettingsView settingsViewWindow = new SettingsView();
+            var viewModel = new SettingsViewModel();
+            SettingsView settingsViewWindow = new SettingsView(viewModel);
             settingsViewWindow.ShowDialog();
         }
+
         private void CallApplicationInfoClick(object parameter)
         {
             //TODO как вызвать окно из ViewModel, когда ты нуб в MVVM

@@ -1,19 +1,21 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace CommunalPayments.Helpers
 {
     public static class SerializeHelper<T>
     {
+        private static Type typeOfT = typeof(T);
+
         public static void Save(T parameter)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(T));
+            XmlSerializer formatter = new XmlSerializer(typeOfT);
             if (!Directory.Exists("Database"))
             {
                 Directory.CreateDirectory("Database");
             }
-            //TODO удалить CommunalPayments.Models. из начала названия файла
-            using (FileStream fs = new FileStream($"Database//{parameter.GetType()}.xml", FileMode.Create))
+            using (FileStream fs = new FileStream($"Database//{typeOfT.Name}.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, parameter);
             }
@@ -21,8 +23,8 @@ namespace CommunalPayments.Helpers
 
         public static T Get()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(T));
-            using (FileStream fs = new FileStream($"Database//{Get().GetType()}.xml", FileMode.OpenOrCreate))
+            XmlSerializer formatter = new XmlSerializer(typeOfT);
+            using (FileStream fs = new FileStream($"Database//{typeOfT.Name}.xml", FileMode.OpenOrCreate))
             {
                 T dataCost = (T)formatter.Deserialize(fs);
                 return dataCost;

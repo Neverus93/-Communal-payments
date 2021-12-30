@@ -1,22 +1,22 @@
 ﻿using CommunalPayments.Models;
 using CommunalPayments.Command;
 using CommunalPayments.Helpers;
-using CommunalPayments.Views;
-using System.Windows;
+using System;
 
 namespace CommunalPayments.ViewModels
 {
     public class SettingsViewModel
     {
-        public string ColdWaterPerCubeCostText { get; set; }
+        public event EventHandler AfterSave;
+        public decimal ColdWaterPerCubeCost { get; set; }
 
-        public string HotWaterPerCubeCostText { get; set; }
+        public decimal HotWaterPerCubeCost { get; set; }
 
-        public string ElectricityPerKwtText { get; set; }
+        public decimal ElectricityPerKwt { get; set; }
 
-        public string InternetCostText { get; set; }
+        public decimal InternetCost { get; set; }
 
-        public string WaterSumCostText { get; set; }
+        public decimal WaterSumCost { get; set; }
 
         public RelayCommand SaveSettingsCommand { get; }
 
@@ -27,34 +27,10 @@ namespace CommunalPayments.ViewModels
 
         private void SaveSettingsClick(object parameter)
         {
-            //TODO Реворкнуть покрасивее
-            double cold;
-            double hot;
-            double electricity;
-            double internet;
-            double waterSum;
-            PropertyTryParse(ColdWaterPerCubeCostText, out cold);
-            PropertyTryParse(HotWaterPerCubeCostText, out hot);
-            PropertyTryParse(ElectricityPerKwtText, out electricity);
-            PropertyTryParse(InternetCostText, out internet);
-            PropertyTryParse(WaterSumCostText, out waterSum);
-            SettingsInfo settings = new SettingsInfo(cold, hot, electricity, internet, waterSum);
-
-            //TODO Переделать generic + сделать закрытие окна настроек после сохранения
-            //https://www.cyberforum.ru/wpf-silverlight/thread2693735.html
+            SettingsInfo settings = new SettingsInfo(ColdWaterPerCubeCost, HotWaterPerCubeCost, ElectricityPerKwt, InternetCost, WaterSumCost);
             SerializeHelper<SettingsInfo>.Save(settings);
-        }
-
-        private void PropertyTryParse(string text, out double result)
-        {
-            if (double.TryParse(text, out result))
-            {
-                result = double.Parse(text);
-            }
-            else
-            {
-                result = 0;
-            }
+            var onClose = AfterSave;
+            onClose?.Invoke(this, EventArgs.Empty);
         }
     }
 }

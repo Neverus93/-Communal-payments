@@ -8,10 +8,14 @@ namespace CommunalPayments.Views
     /// </summary>
     public partial class SettingsView : Window
     {
-        public SettingsView()
+        public SettingsView(SettingsViewModel dataContext)
         {
             InitializeComponent();
-            DataContext = new SettingsViewModel();
+            DataContext = dataContext;
+            dataContext.AfterSave += (o, e) =>
+            {
+                Close();
+            };
         }
     }
 }
