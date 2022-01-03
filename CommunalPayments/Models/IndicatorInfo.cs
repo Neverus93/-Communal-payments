@@ -3,18 +3,18 @@
 namespace CommunalPayments.Models
 {
     [Serializable]
-    class IndicatorInfo
+    public class IndicatorInfo
     {
-        public double ColdWaterIndicator { get; set; }
-        public double HotWaterIndicator { get; set; }
-        public double ElectricityIndicator { get; set; }
+        public decimal ColdWaterIndicator { get; set; }
+        public decimal HotWaterIndicator { get; set; }
+        public decimal ElectricityIndicator { get; set; }
 
         public IndicatorInfo()
         {
 
         }
 
-        public IndicatorInfo(double coldWaterIndicator, double hotWaterIndicator, double electricityIndicator)
+        public IndicatorInfo(decimal coldWaterIndicator, decimal hotWaterIndicator, decimal electricityIndicator)
         {
             ColdWaterIndicator = coldWaterIndicator;
             HotWaterIndicator = hotWaterIndicator;

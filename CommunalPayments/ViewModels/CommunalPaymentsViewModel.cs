@@ -3,59 +3,109 @@ using CommunalPayments.Views;
 using CommunalPayments.Command;
 using CommunalPayments.Helpers;
 using Prism.Mvvm;
+using System.Windows;
 
 namespace CommunalPayments.ViewModels
 {
-    class CommunalPaymentsViewModel : BindableBase
+    public class CommunalPaymentsViewModel : BindableBase
     {
-        private decimal coldWaterIndicator;
-        private decimal hotWaterindicator;
-        private decimal electricityindicator;
+        private decimal previousColdWaterIndicator;
+        private decimal previousHotWaterIndicator;
+        private decimal previousElectricityindicator;
 
-        public decimal ColdWaterIndicator
+        private decimal currentColdWaterIndicator;
+        private decimal currentHotWaterindicator;
+        private decimal currentElectricityindicator;
+
+        private IndicatorInfo previousIndicators = new IndicatorInfo();
+        private SettingsInfo settings = new SettingsInfo();
+
+        public decimal PreviousColdWaterIndicator
         {
             get
             {
-                return coldWaterIndicator;
+                return previousColdWaterIndicator;
             }
             set
             {
-                coldWaterIndicator = value;
+                previousColdWaterIndicator = previousIndicators.ColdWaterIndicator;
                 RaisePropertyChanged();
             }
         }
-        public decimal HotWaterIndicator
+        public decimal PreviousHotWaterIndicator
         {
             get
             {
-                return hotWaterindicator;
+                return previousHotWaterIndicator;
             }
             set
             {
-                hotWaterindicator = value;
+                previousHotWaterIndicator = previousIndicators.HotWaterIndicator;
                 RaisePropertyChanged();
             }
         }
-        public decimal ElectricityIndicator
+        public decimal PreviousElectricityindicator
         {
             get
             {
-                return electricityindicator;
+                return previousElectricityindicator;
             }
             set
             {
-                electricityindicator = value;
+                previousElectricityindicator = previousIndicators.ElectricityIndicator;
                 RaisePropertyChanged();
             }
         }
+
+        public decimal CurrentColdWaterIndicator
+        {
+            get
+            {
+                return currentColdWaterIndicator;
+            }
+            set
+            {
+                currentColdWaterIndicator = value;
+                RaisePropertyChanged();
+            }
+        }
+        public decimal CurrentHotWaterIndicator
+        {
+            get
+            {
+                return currentHotWaterindicator;
+            }
+            set
+            {
+                currentHotWaterindicator = value;
+                RaisePropertyChanged();
+            }
+        }
+        public decimal CurrentElectricityIndicator
+        {
+            get
+            {
+                return currentElectricityindicator;
+            }
+            set
+            {
+                currentElectricityindicator = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
 
         public CommunalPaymentsViewModel()
         {
-            //TODO получить настойки для калькуляции
-            //TODO получить данные из файла показателей для заполнения полей и калькуляции
+            //Каждый раз создаётся файл с нулями, хотя изначально файл существует, необходимо доработать условие в методе CheckDataFile
+            //Неправильно цепляются значения к свойствам, вследствие чего неправильное отображение на форме
+            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
+            previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+            //Необходимо добавить привязки к настройкам
+            settings = SerializeHelper<SettingsInfo>.Get();
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
@@ -63,8 +113,9 @@ namespace CommunalPayments.ViewModels
 
         private void SaveIndicatorClick(object parameter)
         {
-            IndicatorInfo indicator = new IndicatorInfo();
+            IndicatorInfo indicator = new IndicatorInfo(CurrentColdWaterIndicator, CurrentHotWaterIndicator, CurrentElectricityIndicator);
             SerializeHelper<IndicatorInfo>.Save(indicator);
+            MessageBox.Show("Данные успешно сохранены!");
         }
 
         private void CallSettingsClick(object parameter)

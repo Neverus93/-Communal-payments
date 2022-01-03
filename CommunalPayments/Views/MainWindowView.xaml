@@ -9,7 +9,7 @@
         <Style x:Key="VisibilityStyle" TargetType="TextBlock">
             <Setter Property="Visibility" Value="Visible"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding .}" Value="0">
+                <DataTrigger Binding="{Binding .}" Value="">
                     <Setter Property="Visibility" Value="Hidden"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -18,30 +18,30 @@
     <Grid>
         <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,40,0,0" Width="311" Height="190" VerticalAlignment="Top">
             <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
-            <TextBox x:Name="HotWaterInput" Text="{Binding HotWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="HotWaterInput" Text="{Binding CurrentHotWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ColdWaterInput" Text="{Binding ColdWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ColdWaterInput" Text="{Binding CurrentColdWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ElectricityInput" Text="{Binding ElectricityIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ElectricityInput" Text="{Binding CurrentElectricityIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
         </StackPanel>
         <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
-            <Button x:Name="SaveCalling" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+            <Button x:Name="SaveCalling" Content="Сохранить" Command="{Binding SaveIndicatorCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
             <Button x:Name="SettingsCalling" Content="Настройки" Command="{Binding CallSettingsCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100"/>
-            <Button x:Name="InfoCalling" Content="О программе" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
+            <Button x:Name="InfoCalling" Content="О программе" Command="{Binding CallApplicationInfoCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
         </StackPanel>
         <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="89" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">
             <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="448">
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousCold" Text="" Width="349" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="PreviousCold" DataContext="{Binding PreviousColdWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="349" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousHot" Text="" Width="359" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="PreviousHot" DataContext="{Binding PreviousHotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="359" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousElecricity" Text="" Width="352" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="352" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -49,15 +49,15 @@
             <StackPanel x:Name="CurrentIndicators" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="448">
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="CurrentCold" DataContext="{Binding ColdWaterIndicator}" Text="{Binding Path=.,StringFormat={}{0} ₽}" Margin="2,0,0,0" Width="351" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="CurrentCold" DataContext="{Binding CurrentColdWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Margin="2,0,0,0" Width="351" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="CurrentHot" DataContext="{Binding HotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="359" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="CurrentHot" DataContext="{Binding CurrentHotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="359" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CurrentElecricity" DataContext="{Binding ElectricityIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="352" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="CurrentElecricity" DataContext="{Binding CurrentElectricityIndicator}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="352" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

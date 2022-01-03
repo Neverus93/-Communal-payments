@@ -30,5 +30,13 @@ namespace CommunalPayments.Helpers
                 return dataCost;
             }
         }
+
+        public static void CheckDataFile(T parameter)
+        {
+            if (!Directory.Exists($"Database//{typeOfT.Name}.xml"))
+            {
+                Save(parameter);
+            }
+        }
     }
 }
