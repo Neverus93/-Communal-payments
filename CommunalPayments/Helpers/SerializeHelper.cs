@@ -33,7 +33,7 @@ namespace CommunalPayments.Helpers
 
         public static void CheckDataFile(T parameter)
         {
-            if (!Directory.Exists($"Database//{typeOfT.Name}.xml"))
+            if (!File.Exists($"Database//{typeOfT.Name}.xml"))
             {
                 Save(parameter);
             }

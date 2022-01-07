@@ -17,9 +17,6 @@ namespace CommunalPayments.ViewModels
         private decimal currentHotWaterindicator;
         private decimal currentElectricityindicator;
 
-        private IndicatorInfo previousIndicators = new IndicatorInfo();
-        private SettingsInfo settings = new SettingsInfo();
-
         public decimal PreviousColdWaterIndicator
         {
             get
@@ -28,8 +25,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                previousColdWaterIndicator = previousIndicators.ColdWaterIndicator;
-                RaisePropertyChanged();
+                previousColdWaterIndicator = value;
             }
         }
         public decimal PreviousHotWaterIndicator
@@ -40,8 +36,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                previousHotWaterIndicator = previousIndicators.HotWaterIndicator;
-                RaisePropertyChanged();
+                previousHotWaterIndicator = value;
             }
         }
         public decimal PreviousElectricityindicator
@@ -52,8 +47,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                previousElectricityindicator = previousIndicators.ElectricityIndicator;
-                RaisePropertyChanged();
+                previousElectricityindicator = value;
             }
         }
 
@@ -100,12 +94,29 @@ namespace CommunalPayments.ViewModels
 
         public CommunalPaymentsViewModel()
         {
-            //Каждый раз создаётся файл с нулями, хотя изначально файл существует, необходимо доработать условие в методе CheckDataFile
-            //Неправильно цепляются значения к свойствам, вследствие чего неправильное отображение на форме
+            SettingsInfo settings = new SettingsInfo();
+            IndicatorInfo previousIndicators = new IndicatorInfo();
+
             SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             previousIndicators = SerializeHelper<IndicatorInfo>.Get();
-            //Необходимо добавить привязки к настройкам
-            settings = SerializeHelper<SettingsInfo>.Get();
+            try
+            {
+                settings = SerializeHelper<SettingsInfo>.Get();
+            }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("Добро пожаловать в программу для расчёта коммунальных платежей. Хотите задать настройки сейчас?", "Приветствие", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if(result == MessageBoxResult.Yes)
+                {
+                    SettingsViewModel settingsViewModel = new SettingsViewModel();
+                    SettingsView settingsView = new SettingsView(settingsViewModel);
+                    settingsView.ShowDialog();
+                }
+                else
+                {
+                    return;
+                }
+            }
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
