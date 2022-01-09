@@ -13,7 +13,8 @@ namespace CommunalPayments.ViewModels
         private decimal currentHotWaterindicator;
         private decimal currentElectricityindicator;
 
-        private IndicatorInfo previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+        private readonly IndicatorInfo previousIndicators = new IndicatorInfo();
+        private readonly SettingsInfo settings = new SettingsInfo();
 
         public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
         public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
@@ -56,17 +57,26 @@ namespace CommunalPayments.ViewModels
             }
         }
 
+        public decimal ColdWaterPerCubeCost => settings.ColdWaterPerCubeCost;
+        public decimal HotWaterPerCubeCost => settings.HotWaterPerCubeCost;
+        public decimal ElectricityPerKwtCost => settings.ElectricityPerKwtCost;
+        public decimal InternetCost => settings.InternetCost;
+
+
+        //TODO
+        public decimal ColdWaterIndicatorDifference => CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+
+        //TODO
+        public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
+
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
 
         public CommunalPaymentsViewModel()
         {
-            SettingsInfo settings = new SettingsInfo();
-            IndicatorInfo previousIndicators = new IndicatorInfo(PreviousColdWaterIndicator, PreviousHotWaterIndicator, PreviousElectricityindicator);
-
-            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             try
             {
                 settings = SerializeHelper<SettingsInfo>.Get();

@@ -65,7 +65,11 @@
             <StackPanel x:Name="CalculateBox" HorizontalAlignment="Left" Width="448">
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="CalculateCold" Text="" Width="351" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <TextBlock x:Name="ColdWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ColdWaterPerCubeCost" DataContext="{Binding ColdWaterPerCubeCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ColdWaterCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
@@ -81,7 +85,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Интернет: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CalculateInternet" Text="" Width="381" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="CalculateInternet" DataContext="{Binding InternetCost}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="381" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="ИТОГО: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
