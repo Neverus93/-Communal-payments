@@ -68,7 +68,7 @@ namespace CommunalPayments.ViewModels
         public decimal WaterSumCost => settings.WaterSumCost;
 
 
-        //TODO
+        //TODO Нужен хелпер под расчёты разницы, который потом вызову в конструкторе, подобно сериалайзеру
         public decimal ColdWaterIndicatorDifference
         {
             get
@@ -108,7 +108,7 @@ namespace CommunalPayments.ViewModels
 
         public decimal WaterSum => ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
 
-        //TODO
+        //TODO Нужен хелпер под расчёты разницы, который потом вызову в конструкторе, подобно сериалайзерув
         public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
         public decimal HotWaterCostResult => HotWaterIndicatorDifference * HotWaterPerCubeCost;
         public decimal ElectricityCostResult => ElectricityIndicatorDifference * ElectricityPerKwtCost;
