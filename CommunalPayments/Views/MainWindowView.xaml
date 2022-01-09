@@ -73,11 +73,19 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="CalculateHot" Text="" Width="358" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="HotWaterPerCubeCost" DataContext="{Binding HotWaterPerCubeCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="HotWaterCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CalculateElecricity" Text="" Width="352" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ElecricityPerCubeCost" DataContext="{Binding ElectricityPerKwtCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ElecricityCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Водоотвод: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
