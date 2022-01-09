@@ -12,6 +12,7 @@ namespace CommunalPayments.Views
         {
             InitializeComponent();
             DataContext = new CommunalPaymentsViewModel();
+            //Сделать обновление данных после изменения настроек - событие AfterSave
         }
     }
 }

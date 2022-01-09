@@ -13,6 +13,10 @@ namespace CommunalPayments.ViewModels
         private decimal currentHotWaterindicator;
         private decimal currentElectricityindicator;
 
+        private decimal coldWaterIndicatorDifference;
+        private decimal hotWaterIndicatorDifference;
+        private decimal electricityIndicatorDifference;
+
         private readonly IndicatorInfo previousIndicators = new IndicatorInfo();
         private readonly SettingsInfo settings = new SettingsInfo();
 
@@ -61,13 +65,56 @@ namespace CommunalPayments.ViewModels
         public decimal HotWaterPerCubeCost => settings.HotWaterPerCubeCost;
         public decimal ElectricityPerKwtCost => settings.ElectricityPerKwtCost;
         public decimal InternetCost => settings.InternetCost;
+        public decimal WaterSumCost => settings.WaterSumCost;
 
 
         //TODO
-        public decimal ColdWaterIndicatorDifference => CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+        public decimal ColdWaterIndicatorDifference
+        {
+            get
+            {
+                return coldWaterIndicatorDifference < 0 ? 0 : coldWaterIndicatorDifference;
+            }
+            set
+            {
+                coldWaterIndicatorDifference = CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+                RaisePropertyChanged();
+            }
+        }
+        public decimal HotWaterIndicatorDifference
+        {
+            get
+            {
+                return hotWaterIndicatorDifference < 0 ? 0 : hotWaterIndicatorDifference;
+            }
+            set
+            {
+                hotWaterIndicatorDifference = CurrentHotWaterIndicator - PreviousHotWaterIndicator;
+                RaisePropertyChanged();
+            }
+        }
+        public decimal ElectricityIndicatorDifference
+        {
+            get
+            {
+                return electricityIndicatorDifference < 0 ? 0 : electricityIndicatorDifference;
+            }
+            set
+            {
+                electricityIndicatorDifference = CurrentElectricityIndicator - PreviousElectricityindicator;
+                RaisePropertyChanged();
+            }
+        }
+
+        public decimal WaterSum => ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
 
         //TODO
         public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
+        public decimal HotWaterCostResult => HotWaterIndicatorDifference * HotWaterPerCubeCost;
+        public decimal ElectricityCostResult => ElectricityIndicatorDifference * ElectricityPerKwtCost;
+        public decimal WaterSumCostResult => WaterSum * WaterSumCost;
+
+        public decimal OverallResult => ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
 
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }

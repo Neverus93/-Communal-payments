@@ -74,22 +74,26 @@
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <StackPanel Orientation="Horizontal" Height="24">
-                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding HotWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="HotWaterPerCubeCost" DataContext="{Binding HotWaterPerCubeCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="HotWaterCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="HotWaterCostResult" DataContext="{Binding HotWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <StackPanel Orientation="Horizontal" Height="24">
-                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ElectricityIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="ElecricityPerCubeCost" DataContext="{Binding ElectricityPerKwtCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="ElecricityCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ElecricityCostResult" DataContext="{Binding ElectricityCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Водоотвод: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CalculateWaterSummator" Text="" Width="373" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Height="24">
+                        <TextBlock x:Name="WaterSum" DataContext="{Binding WaterSum}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="WaterSumCost" DataContext="{Binding WaterSumCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="WaterSumCostResult" DataContext="{Binding WaterSumCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Интернет: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -97,7 +101,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="ИТОГО: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CalculateScore" Text="" Width="394" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="CalculateScore" DataContext="{Binding OverallResult}" Text="{Binding Path=., StringFormat={}{0} ₽}" Width="394" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
