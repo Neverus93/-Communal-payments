@@ -9,47 +9,15 @@ namespace CommunalPayments.ViewModels
 {
     public class CommunalPaymentsViewModel : BindableBase
     {
-        private decimal previousColdWaterIndicator;
-        private decimal previousHotWaterIndicator;
-        private decimal previousElectricityindicator;
-
         private decimal currentColdWaterIndicator;
         private decimal currentHotWaterindicator;
         private decimal currentElectricityindicator;
 
-        public decimal PreviousColdWaterIndicator
-        {
-            get
-            {
-                return previousColdWaterIndicator;
-            }
-            set
-            {
-                previousColdWaterIndicator = value;
-            }
-        }
-        public decimal PreviousHotWaterIndicator
-        {
-            get
-            {
-                return previousHotWaterIndicator;
-            }
-            set
-            {
-                previousHotWaterIndicator = value;
-            }
-        }
-        public decimal PreviousElectricityindicator
-        {
-            get
-            {
-                return previousElectricityindicator;
-            }
-            set
-            {
-                previousElectricityindicator = value;
-            }
-        }
+        private IndicatorInfo previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+
+        public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
+        public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
+        public decimal PreviousElectricityindicator => previousIndicators.ElectricityIndicator;
 
         public decimal CurrentColdWaterIndicator
         {
@@ -95,7 +63,7 @@ namespace CommunalPayments.ViewModels
         public CommunalPaymentsViewModel()
         {
             SettingsInfo settings = new SettingsInfo();
-            IndicatorInfo previousIndicators = new IndicatorInfo();
+            IndicatorInfo previousIndicators = new IndicatorInfo(PreviousColdWaterIndicator, PreviousHotWaterIndicator, PreviousElectricityindicator);
 
             SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             previousIndicators = SerializeHelper<IndicatorInfo>.Get();
@@ -111,10 +79,6 @@ namespace CommunalPayments.ViewModels
                     SettingsViewModel settingsViewModel = new SettingsViewModel();
                     SettingsView settingsView = new SettingsView(settingsViewModel);
                     settingsView.ShowDialog();
-                }
-                else
-                {
-                    return;
                 }
             }
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);

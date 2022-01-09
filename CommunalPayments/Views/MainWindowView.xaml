@@ -41,7 +41,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Width="352" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Width="352" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -57,7 +57,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CurrentElecricity" DataContext="{Binding CurrentElectricityIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Width="352" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="CurrentElecricity" DataContext="{Binding CurrentElectricityIndicator}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Width="352" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
