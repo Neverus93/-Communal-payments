@@ -4,6 +4,7 @@ using CommunalPayments.Command;
 using CommunalPayments.Helpers;
 using Prism.Mvvm;
 using System.Windows;
+using System;
 
 namespace CommunalPayments.ViewModels
 {
@@ -122,7 +123,14 @@ namespace CommunalPayments.ViewModels
 
         public CommunalPaymentsViewModel()
         {
-            previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+            try
+            {
+                previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             try
             {
