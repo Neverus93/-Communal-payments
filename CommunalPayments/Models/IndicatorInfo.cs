@@ -20,5 +20,15 @@ namespace CommunalPayments.Models
             HotWaterIndicator = hotWaterIndicator;
             ElectricityIndicator = electricityIndicator;
         }
+
+        public static IndicatorInfo operator -(IndicatorInfo previousindicators, IndicatorInfo currentIndicators)
+        {
+            return new IndicatorInfo
+            {
+                ColdWaterIndicator = currentIndicators.ColdWaterIndicator - previousindicators.ColdWaterIndicator,
+                HotWaterIndicator = currentIndicators.HotWaterIndicator - previousindicators.HotWaterIndicator,
+                ElectricityIndicator = currentIndicators.ElectricityIndicator - previousindicators.ElectricityIndicator
+            };
+        }
     }
 }

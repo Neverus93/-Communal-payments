@@ -69,7 +69,6 @@ namespace CommunalPayments.ViewModels
         public decimal WaterSumCost => settings.WaterSumCost;
 
 
-        //TODO Нужен хелпер под расчёты разницы, который потом вызову в конструкторе, подобно сериалайзеру
         public decimal ColdWaterIndicatorDifference
         {
             get
