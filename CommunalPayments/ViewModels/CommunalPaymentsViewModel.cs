@@ -108,7 +108,7 @@ namespace CommunalPayments.ViewModels
 
         public decimal WaterSum => ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
 
-        //TODO Нужен хелпер под расчёты разницы, который потом вызову в конструкторе, подобно сериалайзеру
+        //TODO Нужно создать допсобытие, которое вызывает привязку
         public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
         public decimal HotWaterCostResult => HotWaterIndicatorDifference * HotWaterPerCubeCost;
         public decimal ElectricityCostResult => ElectricityIndicatorDifference * ElectricityPerKwtCost;

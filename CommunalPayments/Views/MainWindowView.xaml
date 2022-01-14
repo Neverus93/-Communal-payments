@@ -66,7 +66,7 @@
                 <StackPanel Orientation="Horizontal" Height="24">
                     <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <StackPanel Orientation="Horizontal" Height="24">
-                        <TextBlock x:Name="ColdWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ColdWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="ColdWaterPerCubeCost" DataContext="{Binding ColdWaterPerCubeCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="ColdWaterCostResult" DataContext="{Binding ColdWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
@@ -74,7 +74,7 @@
                 <StackPanel Orientation="Horizontal" Height="25">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
                     <StackPanel Orientation="Horizontal" Height="24">
-                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding HotWaterIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding HotWaterIndicatorDifference, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=., StringFormat={}{0} м³}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="HotWaterPerCubeCost" DataContext="{Binding HotWaterPerCubeCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="HotWaterCostResult" DataContext="{Binding HotWaterCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
@@ -82,7 +82,7 @@
                 <StackPanel Orientation="Horizontal" Height="21">
                     <TextBlock Text="Электричество: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <StackPanel Orientation="Horizontal" Height="24">
-                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ElectricityIndicatorDifference}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Height="16" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ElectricityIndicatorDifference, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="ElecricityPerCubeCost" DataContext="{Binding ElectricityPerKwtCost}" Text="{Binding Path=., StringFormat={} x {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock x:Name="ElecricityCostResult" DataContext="{Binding ElectricityCostResult}" Text="{Binding Path=., StringFormat={} равно {0} ₽}" Height="16" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
