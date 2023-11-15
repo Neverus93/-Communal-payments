@@ -19,7 +19,7 @@ namespace CommunalPayments.ViewModels
         private decimal electricityIndicatorDifference;
 
         private readonly IndicatorInfo previousIndicators = new IndicatorInfo();
-        private readonly SettingsInfo settings = new SettingsInfo();
+        private readonly SettingsModel settings = new SettingsModel();
 
         public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
         public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
@@ -108,7 +108,6 @@ namespace CommunalPayments.ViewModels
 
         public decimal WaterSum => ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
 
-        //TODO Нужно создать допсобытие, которое вызывает привязку
         public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
         public decimal HotWaterCostResult => HotWaterIndicatorDifference * HotWaterPerCubeCost;
         public decimal ElectricityCostResult => ElectricityIndicatorDifference * ElectricityPerKwtCost;
@@ -133,7 +132,7 @@ namespace CommunalPayments.ViewModels
             SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
             try
             {
-                settings = SerializeHelper<SettingsInfo>.Get();
+                settings = SerializeHelper<SettingsModel>.Get();
             }
             catch
             {
@@ -166,7 +165,7 @@ namespace CommunalPayments.ViewModels
 
         private void CallApplicationInfoClick(object parameter)
         {
-            //TODO как вызвать окно из ViewModel, когда ты нуб в MVVM
+            
         }
     }
 }
