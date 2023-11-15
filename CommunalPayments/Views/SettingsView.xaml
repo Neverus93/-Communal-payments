@@ -5,25 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CommunalPayments.ViewModels"
         mc:Ignorable="d"
-        Title="Settings" Height="368" Width="278" ResizeMode="CanMinimize">
+        Title="Настройки" Height="210" Width="278" ResizeMode="CanMinimize">
     <Grid>
-        <GroupBox Header="Настройки" HorizontalAlignment="Stretch">
-            <StackPanel>
-                <TextBlock Text="Стоимость горячей воды за куб:" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,30,0,0"/>
-                <TextBox Text="{Binding Path=HotWaterPerCubeCost}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <TextBlock Text="Стоимость холодной воды за куб:" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,10,0,0"/>
-                <TextBox Text="{Binding Path=ColdWaterPerCubeCost}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <TextBlock Text="Стоимость электроэнергии за кВт:" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,10,0,0"/>
-                <TextBox Text="{Binding Path=ElectricityPerKwt}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <TextBlock Text="Стоимость водоотвода:" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,10,0,0"/>
-                <TextBox Text="{Binding Path=WaterSumCost}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <TextBlock Text="Абонентская плата за интернет:" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,10,0,0"/>
-                <TextBox Text="{Binding Path=InternetCost}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <Button IsCancel="True" Content="Отмена" Width="123" Margin="2,20,0,10"/>
-                    <Button Command="{Binding SaveSettingsCommand}" IsDefault="True" Content="Сохранить" Width="123" Margin="0,20,5,10"/>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Стоимость горячей воды за куб:"/>
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Path=HotWaterPerCubeCost}"/>
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Стоимость холодной воды за куб:"/>
+        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Path=ColdWaterPerCubeCost}"/>
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Стоимость электроэнергии за кВт:"/>
+        <TextBox Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=ElectricityPerKwt}"/>
+        <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="Стоимость водоотвода:"/>
+        <TextBox Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding Path=WaterSumCost}"/>
+        <TextBlock Grid.Row="8" Grid.ColumnSpan="2" Text="Абонентская плата за интернет:"/>
+        <TextBox Grid.Row="9" Grid.ColumnSpan="2" Text="{Binding Path=InternetCost}"/>
+        
+        <Button Grid.Column="1" Grid.Row="10" IsCancel="True" Content="Отмена"/>
+        <Button Grid.Column="0" Grid.Row="10" Command="{Binding SaveSettingsCommand}" IsDefault="True" Content="Сохранить"/>
+        
     </Grid>
 </Window>
