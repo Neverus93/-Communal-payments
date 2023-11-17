@@ -8,7 +8,7 @@ using System;
 
 namespace CommunalPayments.ViewModels
 {
-    public class CommunalPaymentsViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase
     {
         private decimal currentColdWaterIndicator;
         private decimal currentHotWaterindicator;
@@ -19,7 +19,7 @@ namespace CommunalPayments.ViewModels
         private decimal electricityIndicatorDifference;
 
         private readonly IndicatorInfo previousIndicators = new IndicatorInfo();
-        private readonly SettingsModel settings = new SettingsModel();
+        private SettingsModel settings = new SettingsModel();
 
         public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
         public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
@@ -119,8 +119,10 @@ namespace CommunalPayments.ViewModels
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
 
-        public CommunalPaymentsViewModel()
+        public MainWindowViewModel()
         {
+            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
+
             try
             {
                 previousIndicators = SerializeHelper<IndicatorInfo>.Get();
@@ -129,14 +131,16 @@ namespace CommunalPayments.ViewModels
             {
                 MessageBox.Show(ex.ToString());
             }
-            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
+
             try
             {
                 settings = SerializeHelper<SettingsModel>.Get();
             }
             catch
             {
-                MessageBoxResult result = MessageBox.Show("Добро пожаловать в программу для расчёта коммунальных платежей. Хотите задать настройки сейчас?", "Приветствие", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("Добро пожаловать в программу для расчёта коммунальных платежей. " +
+                    "Хотите задать настройки сейчас?", "Приветствие", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
                 if(result == MessageBoxResult.Yes)
                 {
                     SettingsViewModel settingsViewModel = new SettingsViewModel();
@@ -144,6 +148,7 @@ namespace CommunalPayments.ViewModels
                     settingsView.ShowDialog();
                 }
             }
+
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
