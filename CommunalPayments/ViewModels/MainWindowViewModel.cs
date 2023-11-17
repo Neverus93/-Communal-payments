@@ -18,7 +18,7 @@ namespace CommunalPayments.ViewModels
         private decimal hotWaterIndicatorDifference;
         private decimal electricityIndicatorDifference;
 
-        private readonly IndicatorInfo previousIndicators = new IndicatorInfo();
+        private IndicatorInfo previousIndicators = new IndicatorInfo();
         private SettingsModel settings = new SettingsModel();
 
         public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
@@ -170,7 +170,8 @@ namespace CommunalPayments.ViewModels
 
         private void CallApplicationInfoClick(object parameter)
         {
-            
+            ApplicationInfo applicationInfo = new ApplicationInfo();
+            applicationInfo.ShowDialog();
         }
     }
 }

@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Расчёт коммунальных платежей" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="Расчёт коммунальных платежей" Height="450" Width="800" ResizeMode="CanMinimize"
+        Loaded="MainWindowView_OnLoaded">
     <Window.Resources>
         <Style x:Key="VisibilityStyle" TargetType="TextBlock">
             <Setter Property="Visibility" Value="Visible"/>
