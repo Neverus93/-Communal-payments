@@ -9,7 +9,7 @@
         <Style x:Key="VisibilityStyle" TargetType="TextBlock">
             <Setter Property="Visibility" Value="Visible"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding .}" Value="">
+                <DataTrigger Binding="{Binding}" Value="">
                     <Setter Property="Visibility" Value="Hidden"/>
                 </DataTrigger>
             </Style.Triggers>
