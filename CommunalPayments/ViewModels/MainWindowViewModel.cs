@@ -29,6 +29,7 @@ namespace CommunalPayments.ViewModels
         public decimal InternetCost => settings.InternetCost;
         public decimal WaterSumCost => settings.WaterSumCost;
 
+        public IndicatorInfoControlViewModel IndicatorInfoControlViewModel { get { return indicatorInfoControlViewModel; } }
 
         public decimal ColdWaterIndicatorDifference
         {

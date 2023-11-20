@@ -2,7 +2,7 @@
 
 namespace CommunalPayments.ViewModels.Controls
 {
-    internal class IndicatorInfoControlViewModel : BindableBase
+    public class IndicatorInfoControlViewModel : BindableBase
     {
         private decimal currentColdWaterIndicator;
         private decimal currentHotWaterindicator;

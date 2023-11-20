@@ -20,25 +20,34 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <controls:IndicatorInfoControl/>
-        <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
-            <Button x:Name="SaveCalling" Content="Сохранить" Command="{Binding SaveIndicatorCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
-            <Button x:Name="SettingsCalling" Content="Настройки" Command="{Binding CallSettingsCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100"/>
-            <Button x:Name="InfoCalling" Content="О программе" Command="{Binding CallApplicationInfoCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
-        </StackPanel>
-        <GroupBox Header="Предыдущие показания" HorizontalAlignment="Left" Height="89" Margin="326,49,0,0" VerticalAlignment="Top" Width="458">
-            <StackPanel x:Name="PreviousIndicators" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="448">
-                <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Холодная вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousCold" DataContext="{Binding PreviousColdWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Width="349" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+
+        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" Grid.RowSpan="2" Grid.Column="0"/>
+        <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" Grid.Row="2" Grid.Column="0"/>
+
+        <GroupBox Header="Предыдущие показания" Grid.Row="0" Grid.Column="1" Margin="10">
+            <StackPanel x:Name="PreviousIndicators" Margin="10">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Холодная вода: "/>
+                    <TextBlock x:Name="PreviousCold" DataContext="{Binding PreviousColdWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Горячая вода: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousHot" DataContext="{Binding PreviousHotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Width="359" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Горячая вода: "/>
+                    <TextBlock x:Name="PreviousHot" DataContext="{Binding PreviousHotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="24">
-                    <TextBlock Text="Электричество: " HorizontalAlignment="Left" Margin="10,0,0,0" Height="16"/>
-                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Width="352" Margin="2,0,0,0" VerticalAlignment="Center" Style="{StaticResource VisibilityStyle}"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Text="Электричество: "/>
+                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
