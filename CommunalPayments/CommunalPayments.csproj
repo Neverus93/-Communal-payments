@@ -99,10 +99,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Controls\IndicatorInfoControl.xaml.cs">
+      <DependentUpon>IndicatorInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\RuntimeHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Models\IndicatorInfo.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="ViewModels\Controls\IndicatorInfoControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">
       <DependentUpon>ApplicationInfo.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,10 @@
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Page Include="Controls\IndicatorInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ApplicationInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

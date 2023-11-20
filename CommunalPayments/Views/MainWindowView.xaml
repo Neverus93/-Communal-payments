@@ -2,7 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:controlviewmodels="clr-namespace:CommunalPayments.ViewModels.Controls"
+        xmlns:controls="clr-namespace:CommunalPayments.Controls"
         mc:Ignorable="d"
         Title="Расчёт коммунальных платежей" Height="450" Width="800" ResizeMode="CanMinimize"
         Loaded="MainWindowView_OnLoaded">
@@ -17,14 +20,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" Margin="10,40,0,0" Width="311" Height="190" VerticalAlignment="Top">
-            <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
-            <TextBox x:Name="HotWaterInput" Text="{Binding CurrentHotWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
-            <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ColdWaterInput" Text="{Binding CurrentColdWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
-            <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ElectricityInput" Text="{Binding CurrentElectricityIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
-        </StackPanel>
+        <controls:IndicatorInfoControl/>
         <StackPanel x:Name="ControlButtons" HorizontalAlignment="Left" Height="147" Margin="10,255,0,0" VerticalAlignment="Top" Width="311">
             <Button x:Name="SaveCalling" Content="Сохранить" Command="{Binding SaveIndicatorCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" Width="100"/>
             <Button x:Name="SettingsCalling" Content="Настройки" Command="{Binding CallSettingsCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10" Width="100"/>

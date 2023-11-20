@@ -5,62 +5,23 @@ using CommunalPayments.Helpers;
 using Prism.Mvvm;
 using System.Windows;
 using System;
+using CommunalPayments.ViewModels.Controls;
 
 namespace CommunalPayments.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private decimal currentColdWaterIndicator;
-        private decimal currentHotWaterindicator;
-        private decimal currentElectricityindicator;
-
         private decimal coldWaterIndicatorDifference;
         private decimal hotWaterIndicatorDifference;
         private decimal electricityIndicatorDifference;
 
         private IndicatorInfo previousIndicators = new IndicatorInfo();
         private SettingsModel settings = new SettingsModel();
+        private IndicatorInfoControlViewModel indicatorInfoControlViewModel;
 
         public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
         public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
         public decimal PreviousElectricityindicator => previousIndicators.ElectricityIndicator;
-
-        public decimal CurrentColdWaterIndicator
-        {
-            get
-            {
-                return currentColdWaterIndicator;
-            }
-            set
-            {
-                currentColdWaterIndicator = value;
-                RaisePropertyChanged();
-            }
-        }
-        public decimal CurrentHotWaterIndicator
-        {
-            get
-            {
-                return currentHotWaterindicator;
-            }
-            set
-            {
-                currentHotWaterindicator = value;
-                RaisePropertyChanged();
-            }
-        }
-        public decimal CurrentElectricityIndicator
-        {
-            get
-            {
-                return currentElectricityindicator;
-            }
-            set
-            {
-                currentElectricityindicator = value;
-                RaisePropertyChanged();
-            }
-        }
 
         public decimal ColdWaterPerCubeCost => settings.ColdWaterPerCubeCost;
         public decimal HotWaterPerCubeCost => settings.HotWaterPerCubeCost;
@@ -77,7 +38,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                coldWaterIndicatorDifference = CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+                coldWaterIndicatorDifference = indicatorInfoControlViewModel.CurrentColdWaterIndicator - PreviousColdWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -89,7 +50,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                hotWaterIndicatorDifference = CurrentHotWaterIndicator - PreviousHotWaterIndicator;
+                hotWaterIndicatorDifference = indicatorInfoControlViewModel.CurrentHotWaterIndicator - PreviousHotWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -101,7 +62,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                electricityIndicatorDifference = CurrentElectricityIndicator - PreviousElectricityindicator;
+                electricityIndicatorDifference = indicatorInfoControlViewModel.CurrentElectricityIndicator - PreviousElectricityindicator;
                 RaisePropertyChanged();
             }
         }
@@ -156,7 +117,7 @@ namespace CommunalPayments.ViewModels
 
         private void SaveIndicatorClick(object parameter)
         {
-            IndicatorInfo indicator = new IndicatorInfo(CurrentColdWaterIndicator, CurrentHotWaterIndicator, CurrentElectricityIndicator);
+            IndicatorInfo indicator = new IndicatorInfo(indicatorInfoControlViewModel.CurrentColdWaterIndicator, indicatorInfoControlViewModel.CurrentHotWaterIndicator, indicatorInfoControlViewModel.CurrentElectricityIndicator);
             SerializeHelper<IndicatorInfo>.Save(indicator);
             MessageBox.Show("Данные успешно сохранены!");
         }
