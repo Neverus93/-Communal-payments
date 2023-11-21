@@ -3,12 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         xmlns:controlviewmodels="clr-namespace:CommunalPayments.ViewModels.Controls"
         xmlns:controls="clr-namespace:CommunalPayments.Controls"
         mc:Ignorable="d"
         Title="Расчёт коммунальных платежей" Height="450" Width="800" ResizeMode="CanMinimize"
         Loaded="MainWindowView_OnLoaded">
+    
     <Window.Resources>
         <Style x:Key="VisibilityStyle" TargetType="TextBlock">
             <Setter Property="Visibility" Value="Visible"/>
@@ -19,6 +21,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -32,22 +35,26 @@
         </Grid.ColumnDefinitions>
         
 
-        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" Grid.RowSpan="2" Grid.Column="0"/>
+        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center" Grid.RowSpan="2" Grid.Column="0"/>
         <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" Grid.Row="2" Grid.Column="0"/>
 
         <GroupBox Header="Предыдущие показания" Grid.Row="0" Grid.Column="1" Margin="10">
             <StackPanel x:Name="PreviousIndicators" Margin="10">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Холодная вода: "/>
-                    <TextBlock x:Name="PreviousCold" DataContext="{Binding PreviousColdWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="PreviousCold" DataContext="{Binding PreviousColdWaterIndicator}" 
+                               Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Горячая вода: "/>
-                    <TextBlock x:Name="PreviousHot" DataContext="{Binding PreviousHotWaterIndicator}" Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="PreviousHot" DataContext="{Binding PreviousHotWaterIndicator}" 
+                               Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Электричество: "/>
-                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="PreviousElecricity" DataContext="{Binding PreviousElectricityindicator}" 
+                               Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
