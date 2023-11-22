@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels.Controls" 
-             d:DataContext="{d:DesignInstance Type=viewmodels:CurrentIndicatorsControlViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewmodels:IndicatorInfoControlViewModel}"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -16,22 +16,31 @@
     </UserControl.Resources>
 
     <Grid>
-        <GroupBox Header="Текущие показания">
+        <GroupBox Header="Текущие показания" HorizontalAlignment="Stretch" Margin="5">
             <StackPanel x:Name="CurrentIndicators" Margin="10">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Холодная вода: "/>
-                    <TextBlock x:Name="CurrentCold" DataContext="{Binding CurrentColdWaterIndicator}" 
-                               Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock x:Name="CurrentCold" 
+                               Style="{StaticResource VisibilityStyle}">
+                        <Run Text="{Binding CurrentColdWaterIndicator}"/>
+                        <Run Text=" м³"/>
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <TextBlock Text="Горячая вода: " HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="CurrentHot" DataContext="{Binding CurrentHotWaterIndicator}" 
-                               Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock Text="Горячая вода: "/>
+                    <TextBlock x:Name="CurrentHot"
+                               Style="{StaticResource VisibilityStyle}">
+                        <Run Text="{Binding CurrentHotWaterIndicator}"/>
+                        <Run Text=" м³"/>
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <TextBlock Text="Электричество: " HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="CurrentElecricity" DataContext="{Binding CurrentElectricityIndicator}" 
-                               Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock Text="Электричество: "/>
+                    <TextBlock x:Name="CurrentElecricity"
+                               Style="{StaticResource VisibilityStyle}">
+                        <Run Text="{Binding CurrentElecricityIndicator}"/>
+                        <Run Text=" кВт⋅ч"/>
+                    </TextBlock>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

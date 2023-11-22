@@ -2,7 +2,7 @@
 
 namespace CommunalPayments.ViewModels.Controls
 {
-    public class CurrentIndicatorsControlViewModel : BindableBase
+    public class CalculateScoreControlViewModel : BindableBase
     {
     }
 }

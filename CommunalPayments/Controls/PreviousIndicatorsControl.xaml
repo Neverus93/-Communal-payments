@@ -16,7 +16,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <GroupBox Header="Предыдущие показания">
+        <GroupBox Header="Предыдущие показания" HorizontalAlignment="Stretch" Margin="5">
             <StackPanel x:Name="PreviousIndicators" Margin="10">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Холодная вода: "/>

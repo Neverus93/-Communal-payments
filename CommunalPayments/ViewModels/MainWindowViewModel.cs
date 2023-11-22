@@ -1,6 +1,5 @@
 ﻿using CommunalPayments.Models;
 using CommunalPayments.Views;
-using CommunalPayments.Command;
 using CommunalPayments.Helpers;
 using Prism.Mvvm;
 using System.Windows;
@@ -11,35 +10,36 @@ namespace CommunalPayments.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private decimal coldWaterIndicatorDifference;
-        private decimal hotWaterIndicatorDifference;
-        private decimal electricityIndicatorDifference;
+        private decimal _coldWaterIndicatorDifference;
+        private decimal _hotWaterIndicatorDifference;
+        private decimal _electricityIndicatorDifference;
 
-        private IndicatorInfo previousIndicators = new IndicatorInfo();
-        private SettingsModel settings = new SettingsModel();
-        private IndicatorInfoControlViewModel indicatorInfoControlViewModel;
+        private readonly IndicatorInfo _previousIndicators = new IndicatorInfo();
+        private readonly SettingsModel _settings = new SettingsModel();
+        private readonly IndicatorInfoControlViewModel _indicatorInfoControlViewModel;
 
-        public decimal PreviousColdWaterIndicator => previousIndicators.ColdWaterIndicator;
-        public decimal PreviousHotWaterIndicator => previousIndicators.HotWaterIndicator;
-        public decimal PreviousElectricityindicator => previousIndicators.ElectricityIndicator;
+        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWaterIndicator;
+        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWaterIndicator;
+        public decimal PreviousElectricityindicator => _previousIndicators.ElectricityIndicator;
 
-        public decimal ColdWaterPerCubeCost => settings.ColdWaterPerCubeCost;
-        public decimal HotWaterPerCubeCost => settings.HotWaterPerCubeCost;
-        public decimal ElectricityPerKwtCost => settings.ElectricityPerKwtCost;
-        public decimal InternetCost => settings.InternetCost;
-        public decimal WaterSumCost => settings.WaterSumCost;
+        public decimal ColdWaterPerCubeCost => _settings.ColdWaterPerCubeCost;
+        public decimal HotWaterPerCubeCost => _settings.HotWaterPerCubeCost;
+        public decimal ElectricityPerKwtCost => _settings.ElectricityPerKwtCost;
+        public decimal InternetCost => _settings.InternetCost;
+        public decimal WaterSumCost => _settings.WaterSumCost;
 
-        public IndicatorInfoControlViewModel IndicatorInfoControlViewModel { get { return indicatorInfoControlViewModel; } }
+        public IndicatorInfoControlViewModel IndicatorInfoControlViewModel { get; } = new IndicatorInfoControlViewModel();
+        public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; } = new ManageButtonsControlViewModel();
 
         public decimal ColdWaterIndicatorDifference
         {
             get
             {
-                return coldWaterIndicatorDifference < 0 ? 0 : coldWaterIndicatorDifference;
+                return _coldWaterIndicatorDifference < 0 ? 0 : _coldWaterIndicatorDifference;
             }
             set
             {
-                coldWaterIndicatorDifference = indicatorInfoControlViewModel.CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+                _coldWaterIndicatorDifference = _indicatorInfoControlViewModel.CurrentColdWaterIndicator - PreviousColdWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -47,11 +47,11 @@ namespace CommunalPayments.ViewModels
         {
             get
             {
-                return hotWaterIndicatorDifference < 0 ? 0 : hotWaterIndicatorDifference;
+                return _hotWaterIndicatorDifference < 0 ? 0 : _hotWaterIndicatorDifference;
             }
             set
             {
-                hotWaterIndicatorDifference = indicatorInfoControlViewModel.CurrentHotWaterIndicator - PreviousHotWaterIndicator;
+                _hotWaterIndicatorDifference = _indicatorInfoControlViewModel.CurrentHotWaterIndicator - PreviousHotWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -59,11 +59,11 @@ namespace CommunalPayments.ViewModels
         {
             get
             {
-                return electricityIndicatorDifference < 0 ? 0 : electricityIndicatorDifference;
+                return _electricityIndicatorDifference < 0 ? 0 : _electricityIndicatorDifference;
             }
             set
             {
-                electricityIndicatorDifference = indicatorInfoControlViewModel.CurrentElectricityIndicator - PreviousElectricityindicator;
+                _electricityIndicatorDifference = _indicatorInfoControlViewModel.CurrentElectricityIndicator - PreviousElectricityindicator;
                 RaisePropertyChanged();
             }
         }
@@ -77,17 +77,13 @@ namespace CommunalPayments.ViewModels
 
         public decimal OverallResult => ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
 
-        public RelayCommand SaveIndicatorCommand { get; }
-        public RelayCommand CallSettingsCommand { get; }
-        public RelayCommand CallApplicationInfoCommand { get; }
-
         public MainWindowViewModel()
         {
-            SerializeHelper<IndicatorInfo>.CheckDataFile(previousIndicators);
+            SerializeHelper<IndicatorInfo>.CheckDataFile(_previousIndicators);
 
             try
             {
-                previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+                _previousIndicators = SerializeHelper<IndicatorInfo>.Get();
             }
             catch(Exception ex)
             {
@@ -96,7 +92,7 @@ namespace CommunalPayments.ViewModels
 
             try
             {
-                settings = SerializeHelper<SettingsModel>.Get();
+                _settings = SerializeHelper<SettingsModel>.Get();
             }
             catch
             {
@@ -110,30 +106,6 @@ namespace CommunalPayments.ViewModels
                     settingsView.ShowDialog();
                 }
             }
-
-            SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
-            CallSettingsCommand = new RelayCommand(CallSettingsClick);
-            CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
-        }
-
-        private void SaveIndicatorClick(object parameter)
-        {
-            IndicatorInfo indicator = new IndicatorInfo(indicatorInfoControlViewModel.CurrentColdWaterIndicator, indicatorInfoControlViewModel.CurrentHotWaterIndicator, indicatorInfoControlViewModel.CurrentElectricityIndicator);
-            SerializeHelper<IndicatorInfo>.Save(indicator);
-            MessageBox.Show("Данные успешно сохранены!");
-        }
-
-        private void CallSettingsClick(object parameter)
-        {
-            var viewModel = new SettingsViewModel();
-            SettingsView settingsViewWindow = new SettingsView(viewModel);
-            settingsViewWindow.ShowDialog();
-        }
-
-        private void CallApplicationInfoClick(object parameter)
-        {
-            ApplicationInfo applicationInfo = new ApplicationInfo();
-            applicationInfo.ShowDialog();
         }
     }
 }

@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
-        xmlns:controlviewmodels="clr-namespace:CommunalPayments.ViewModels.Controls"
         xmlns:controls="clr-namespace:CommunalPayments.Controls"
         mc:Ignorable="d"
-        Title="Расчёт коммунальных платежей" Height="450" Width="800" ResizeMode="CanMinimize"
+        Title="Расчёт коммунальных платежей" Height="500" Width="800" ResizeMode="CanMinimize"
         Loaded="MainWindowView_OnLoaded">
 
     <Window.Resources>
@@ -22,20 +21,32 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
 
-        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center" Grid.RowSpan="2" Grid.Column="0"/>
-        <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" Grid.Row="2" Grid.Column="0"/>
-        <controls:PreviousIndicatorsControl DataContext="{Binding PreviousIndicatorControlViewModel}" Grid.Row="0" Grid.Column="1"/>
-        <controls:CurrentIndicatorsControl DataContext="{Binding CurrentIndicatorControlViewModel}" Grid.Row="1" Grid.Column="1"/>
+        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center" 
+                                       Grid.RowSpan="2" 
+                                       Grid.Column="0"/>
+        <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" 
+                                       Grid.Row="2" 
+                                       Grid.Column="0"/>
+        <controls:PreviousIndicatorsControl DataContext="{Binding PreviousIndicatorControlViewModel}" 
+                                            Grid.Row="0" 
+                                            Grid.Column="1"/>
+        <controls:CurrentIndicatorsControl DataContext="{Binding CurrentIndicatorControlViewModel}" 
+                                           Grid.Row="1" 
+                                           Grid.Column="1"/>
+        <controls:CalculateScoreControl DataContext="{Binding CalculateScoreControlViewModel}" 
+                                        Grid.Row="2" 
+                                        Grid.Column="1"/>
     </Grid>
 </Window>

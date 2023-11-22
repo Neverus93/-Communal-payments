@@ -118,7 +118,7 @@
     <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Models\IndicatorInfo.cs" />
     <Compile Include="Models\SettingsModel.cs" />
-    <Compile Include="ViewModels\Controls\CurrentIndicatorsControlViewModel.cs" />
+    <Compile Include="ViewModels\Controls\CalculateScoreControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\IndicatorInfoControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\PreviousIndicatorControlViewModel.cs" />
