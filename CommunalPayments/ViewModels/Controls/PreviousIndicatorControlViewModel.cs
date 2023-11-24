@@ -5,10 +5,10 @@ namespace CommunalPayments.ViewModels.Controls
 {
     public class PreviousIndicatorControlViewModel : BindableBase
     {
-        private readonly IndicatorInfo _previousIndicators = new IndicatorInfo();
+        private readonly IndicatorsModel _previousIndicators = new IndicatorsModel();
 
-        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWaterIndicator;
-        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWaterIndicator;
-        public decimal PreviousElectricityindicator => _previousIndicators.ElectricityIndicator;
+        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWater;
+        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWater;
+        public decimal PreviousElectricityindicator => _previousIndicators.Electricity;
     }
 }

@@ -50,11 +50,11 @@ namespace CommunalPayments.ViewModels.Controls
             
         }
 
-        public IndicatorInfoControlViewModel(decimal cold, decimal hot, decimal elecricity)
+        public IndicatorInfoControlViewModel(decimal cold, decimal hot, decimal electricity)
         {
             CurrentColdWaterIndicator = cold;
             CurrentHotWaterIndicator = hot;
-            CurrentElectricityIndicator = elecricity;
+            CurrentElectricityIndicator = electricity;
         }
     }
 }

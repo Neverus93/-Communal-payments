@@ -27,8 +27,8 @@ namespace CommunalPayments.ViewModels
 
         private void SaveSettingsClick(object parameter)
         {
-            SettingsModel settings = new SettingsModel(ColdWaterPerCubeCost, HotWaterPerCubeCost, ElectricityPerKwt, InternetCost, WaterSumCost);
-            SerializeHelper<SettingsModel>.Save(settings);
+            CostsModel settings = new CostsModel(ColdWaterPerCubeCost, HotWaterPerCubeCost, ElectricityPerKwt, InternetCost, WaterSumCost);
+            SerializeHelper<CostsModel>.Save(settings);
             var onClose = AfterSave;
             onClose?.Invoke(this, EventArgs.Empty);
         }

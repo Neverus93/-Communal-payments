@@ -14,19 +14,19 @@ namespace CommunalPayments.ViewModels
         private decimal _hotWaterIndicatorDifference;
         private decimal _electricityIndicatorDifference;
 
-        private readonly IndicatorInfo _previousIndicators = new IndicatorInfo();
-        private readonly SettingsModel _settings = new SettingsModel();
+        private readonly IndicatorsModel _previousIndicators = new IndicatorsModel();
+        private readonly CostsModel _settings = new CostsModel();
         private readonly IndicatorInfoControlViewModel _indicatorInfoControlViewModel;
 
-        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWaterIndicator;
-        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWaterIndicator;
-        public decimal PreviousElectricityindicator => _previousIndicators.ElectricityIndicator;
+        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWater;
+        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWater;
+        public decimal PreviousElectricityindicator => _previousIndicators.Electricity;
 
-        public decimal ColdWaterPerCubeCost => _settings.ColdWaterPerCubeCost;
-        public decimal HotWaterPerCubeCost => _settings.HotWaterPerCubeCost;
-        public decimal ElectricityPerKwtCost => _settings.ElectricityPerKwtCost;
-        public decimal InternetCost => _settings.InternetCost;
-        public decimal WaterSumCost => _settings.WaterSumCost;
+        public decimal ColdWaterPerCubeCost => _settings.ColdWaterPerCube;
+        public decimal HotWaterPerCubeCost => _settings.HotWaterPerCube;
+        public decimal ElectricityPerKwtCost => _settings.ElectricityPerKwt;
+        public decimal InternetCost => _settings.Internet;
+        public decimal WaterSumCost => _settings.WaterSum;
 
         public IndicatorInfoControlViewModel IndicatorInfoControlViewModel { get; } = new IndicatorInfoControlViewModel();
         public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; } = new ManageButtonsControlViewModel();
@@ -79,11 +79,11 @@ namespace CommunalPayments.ViewModels
 
         public MainWindowViewModel()
         {
-            SerializeHelper<IndicatorInfo>.CheckDataFile(_previousIndicators);
+            SerializeHelper<IndicatorsModel>.CheckDataFile(_previousIndicators);
 
             try
             {
-                _previousIndicators = SerializeHelper<IndicatorInfo>.Get();
+                _previousIndicators = SerializeHelper<IndicatorsModel>.Get();
             }
             catch(Exception ex)
             {
@@ -92,7 +92,7 @@ namespace CommunalPayments.ViewModels
 
             try
             {
-                _settings = SerializeHelper<SettingsModel>.Get();
+                _settings = SerializeHelper<CostsModel>.Get();
             }
             catch
             {
