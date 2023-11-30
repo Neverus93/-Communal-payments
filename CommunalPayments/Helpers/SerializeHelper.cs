@@ -7,6 +7,7 @@ namespace CommunalPayments.Helpers
     public static class SerializeHelper<T>
     {
         private static Type typeOfT = typeof(T);
+        private static string xmlFileName = typeOfT.Name.Replace("Model", String.Empty);
 
         public static void Save(T parameter)
         {
@@ -15,7 +16,7 @@ namespace CommunalPayments.Helpers
             {
                 Directory.CreateDirectory("Database");
             }
-            using (FileStream fs = new FileStream($"Database//{typeOfT.Name}.xml", FileMode.Create))
+            using (FileStream fs = new FileStream($"Database//{xmlFileName}.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, parameter);
             }
@@ -24,7 +25,7 @@ namespace CommunalPayments.Helpers
         public static T Get()
         {
             XmlSerializer formatter = new XmlSerializer(typeOfT);
-            using (FileStream fs = new FileStream($"Database//{typeOfT.Name}.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream($"Database//{xmlFileName}.xml", FileMode.OpenOrCreate))
             {
                 T dataCost = (T)formatter.Deserialize(fs);
                 return dataCost;
@@ -33,7 +34,7 @@ namespace CommunalPayments.Helpers
 
         public static void CheckDataFile(T parameter)
         {
-            if (!File.Exists($"Database//{typeOfT.Name}.xml"))
+            if (!File.Exists($"Database//{xmlFileName}.xml"))
             {
                 Save(parameter);
             }

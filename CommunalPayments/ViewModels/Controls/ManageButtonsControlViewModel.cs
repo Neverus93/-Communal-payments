@@ -9,8 +9,10 @@ namespace CommunalPayments.ViewModels.Controls
 {
     public class ManageButtonsControlViewModel : BindableBase
     {
-        private IndicatorInfoControlViewModel _indicatorInfoControlViewModel;
+        private IndicatorsModel _indicator;
 
+        public IndicatorDataTextControlViewModel IndicatorDataTextControlViewModel { get; set; } = 
+            new IndicatorDataTextControlViewModel();
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
@@ -24,17 +26,17 @@ namespace CommunalPayments.ViewModels.Controls
 
         private void SaveIndicatorClick(object parameter)
         {
-            IndicatorsModel indicator = new IndicatorsModel(_indicatorInfoControlViewModel.CurrentColdWaterIndicator,
-                                                        _indicatorInfoControlViewModel.CurrentHotWaterIndicator,
-                                                        _indicatorInfoControlViewModel.CurrentElectricityIndicator);
-            SerializeHelper<IndicatorsModel>.Save(indicator);
+            _indicator = new IndicatorsModel(IndicatorDataTextControlViewModel.CurrentColdWaterIndicator,
+                                                        IndicatorDataTextControlViewModel.CurrentHotWaterIndicator,
+                                                        IndicatorDataTextControlViewModel.CurrentElectricityIndicator);
+            SerializeHelper<IndicatorsModel>.Save(_indicator);
             MessageBox.Show("Данные успешно сохранены!");
         }
 
         private void CallSettingsClick(object parameter)
         {
-            var viewModel = new SettingsViewModel();
-            SettingsView settingsViewWindow = new SettingsView(viewModel);
+            var viewModel = new CostsViewModel();
+            CostsView settingsViewWindow = new CostsView(viewModel);
             settingsViewWindow.ShowDialog();
         }
 

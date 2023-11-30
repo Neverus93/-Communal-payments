@@ -31,7 +31,7 @@
         </Grid.ColumnDefinitions>
         
 
-        <controls:IndicatorInfoControl DataContext="{Binding IndicatorInfoControlViewModel}" 
+        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorInfoControlViewModel}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center" 
                                        Grid.RowSpan="2" 

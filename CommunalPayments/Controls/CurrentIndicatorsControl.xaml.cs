@@ -11,7 +11,7 @@ namespace CommunalPayments.Controls
         public CurrentIndicatorsControl()
         {
             InitializeComponent();
-            var viewModel = new IndicatorInfoControlViewModel();
+            var viewModel = new IndicatorDataTextControlViewModel();
             DataContext = viewModel;
         }
     }

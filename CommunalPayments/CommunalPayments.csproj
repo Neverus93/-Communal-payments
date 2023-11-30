@@ -105,8 +105,8 @@
     <Compile Include="Controls\CurrentIndicatorsControl.xaml.cs">
       <DependentUpon>CurrentIndicatorsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IndicatorInfoControl.xaml.cs">
-      <DependentUpon>IndicatorInfoControl.xaml</DependentUpon>
+    <Compile Include="Controls\IndicatorDataTextControl.xaml.cs">
+      <DependentUpon>IndicatorDataTextControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ManageButtonsControl.xaml.cs">
       <DependentUpon>ManageButtonsControl.xaml</DependentUpon>
@@ -119,17 +119,17 @@
     <Compile Include="Models\IndicatorsModel.cs" />
     <Compile Include="Models\CostsModel.cs" />
     <Compile Include="ViewModels\Controls\CalculateScoreControlViewModel.cs" />
-    <Compile Include="ViewModels\Controls\IndicatorInfoControlViewModel.cs" />
+    <Compile Include="ViewModels\Controls\IndicatorDataTextControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\PreviousIndicatorControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">
       <DependentUpon>ApplicationInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
+    <Compile Include="Views\CostsView.xaml.cs">
+      <DependentUpon>CostsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\CostsViewModel.cs" />
     <Page Include="Controls\CalculateScoreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,7 +138,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IndicatorInfoControl.xaml">
+    <Page Include="Controls\IndicatorDataTextControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +170,7 @@
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\SettingsView.xaml">
+    <Page Include="Views\CostsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

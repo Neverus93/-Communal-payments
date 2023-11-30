@@ -5,9 +5,10 @@ using System;
 
 namespace CommunalPayments.ViewModels
 {
-    public class SettingsViewModel
+    public class CostsViewModel
     {
         public event EventHandler AfterSave;
+
         public decimal ColdWaterPerCubeCost { get; set; }
 
         public decimal HotWaterPerCubeCost { get; set; }
@@ -20,7 +21,7 @@ namespace CommunalPayments.ViewModels
 
         public RelayCommand SaveSettingsCommand { get; }
 
-        public SettingsViewModel()
+        public CostsViewModel()
         {
             SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
         }

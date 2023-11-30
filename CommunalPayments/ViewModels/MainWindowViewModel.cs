@@ -16,7 +16,7 @@ namespace CommunalPayments.ViewModels
 
         private readonly IndicatorsModel _previousIndicators = new IndicatorsModel();
         private readonly CostsModel _settings = new CostsModel();
-        private readonly IndicatorInfoControlViewModel _indicatorInfoControlViewModel;
+        private readonly IndicatorDataTextControlViewModel _indicatorInfoControlViewModel;
 
         public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWater;
         public decimal PreviousHotWaterIndicator => _previousIndicators.HotWater;
@@ -28,7 +28,7 @@ namespace CommunalPayments.ViewModels
         public decimal InternetCost => _settings.Internet;
         public decimal WaterSumCost => _settings.WaterSum;
 
-        public IndicatorInfoControlViewModel IndicatorInfoControlViewModel { get; } = new IndicatorInfoControlViewModel();
+        public IndicatorDataTextControlViewModel IndicatorInfoControlViewModel { get; } = new IndicatorDataTextControlViewModel();
         public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; } = new ManageButtonsControlViewModel();
 
         public decimal ColdWaterIndicatorDifference
@@ -101,8 +101,8 @@ namespace CommunalPayments.ViewModels
 
                 if(result == MessageBoxResult.Yes)
                 {
-                    SettingsViewModel settingsViewModel = new SettingsViewModel();
-                    SettingsView settingsView = new SettingsView(settingsViewModel);
+                    CostsViewModel settingsViewModel = new CostsViewModel();
+                    CostsView settingsView = new CostsView(settingsViewModel);
                     settingsView.ShowDialog();
                 }
             }
