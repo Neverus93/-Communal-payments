@@ -1,6 +1,5 @@
 ﻿using CommunalPayments.Command;
 using CommunalPayments.Helpers;
-using CommunalPayments.Models;
 using CommunalPayments.Views;
 using Prism.Mvvm;
 using System.Windows;
@@ -9,16 +8,14 @@ namespace CommunalPayments.ViewModels.Controls
 {
     public class ManageButtonsControlViewModel : BindableBase
     {
-        private IndicatorsModel _indicator;
-
-        public IndicatorDataTextControlViewModel IndicatorDataTextControlViewModel { get; set; } = 
-            new IndicatorDataTextControlViewModel();
+        public IndicatorsDataTextControlViewModel IndicatorDataTextControlViewModel { get; set; }
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
 
-        public ManageButtonsControlViewModel()
+        public ManageButtonsControlViewModel(IndicatorsDataTextControlViewModel indicatorDataTextControlViewModel)
         {
+            IndicatorDataTextControlViewModel = indicatorDataTextControlViewModel;
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
             CallApplicationInfoCommand = new RelayCommand(CallApplicationInfoClick);
@@ -26,10 +23,10 @@ namespace CommunalPayments.ViewModels.Controls
 
         private void SaveIndicatorClick(object parameter)
         {
-            _indicator = new IndicatorsModel(IndicatorDataTextControlViewModel.CurrentColdWaterIndicator,
-                                                        IndicatorDataTextControlViewModel.CurrentHotWaterIndicator,
-                                                        IndicatorDataTextControlViewModel.CurrentElectricityIndicator);
-            SerializeHelper<IndicatorsModel>.Save(_indicator);
+            IndicatorDataTextControlViewModel = new IndicatorsDataTextControlViewModel(IndicatorDataTextControlViewModel.ColdWaterIndicator,
+                                                        IndicatorDataTextControlViewModel.HotWaterIndicator,
+                                                        IndicatorDataTextControlViewModel.ElectricityIndicator);
+            SerializeHelper<IndicatorsDataTextControlViewModel>.Save(IndicatorDataTextControlViewModel);
             MessageBox.Show("Данные успешно сохранены!");
         }
 

@@ -116,12 +116,10 @@
     </Compile>
     <Compile Include="Helpers\RuntimeHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
-    <Compile Include="Models\IndicatorsModel.cs" />
-    <Compile Include="Models\CostsModel.cs" />
+    <Compile Include="Models\Costs.cs" />
     <Compile Include="ViewModels\Controls\CalculateScoreControlViewModel.cs" />
-    <Compile Include="ViewModels\Controls\IndicatorDataTextControlViewModel.cs" />
+    <Compile Include="ViewModels\Controls\IndicatorsDataTextControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
-    <Compile Include="ViewModels\Controls\PreviousIndicatorControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">
       <DependentUpon>ApplicationInfo.xaml</DependentUpon>
     </Compile>

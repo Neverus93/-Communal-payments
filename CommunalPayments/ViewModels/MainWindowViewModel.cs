@@ -14,22 +14,20 @@ namespace CommunalPayments.ViewModels
         private decimal _hotWaterIndicatorDifference;
         private decimal _electricityIndicatorDifference;
 
-        private readonly IndicatorsModel _previousIndicators = new IndicatorsModel();
-        private readonly CostsModel _settings = new CostsModel();
-        private readonly IndicatorDataTextControlViewModel _indicatorInfoControlViewModel;
+        private readonly Costs _settings = new Costs();
 
-        public decimal PreviousColdWaterIndicator => _previousIndicators.ColdWater;
-        public decimal PreviousHotWaterIndicator => _previousIndicators.HotWater;
-        public decimal PreviousElectricityindicator => _previousIndicators.Electricity;
+        public IndicatorsDataTextControlViewModel IndicatorDataTextControlViewModel { get; }
+        public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; }
+
+        public decimal PreviousColdWaterIndicator => IndicatorDataTextControlViewModel.ColdWaterIndicator;
+        public decimal PreviousHotWaterIndicator => IndicatorDataTextControlViewModel.HotWaterIndicator;
+        public decimal PreviousElectricityindicator => IndicatorDataTextControlViewModel.ElectricityIndicator;
 
         public decimal ColdWaterPerCubeCost => _settings.ColdWaterPerCube;
         public decimal HotWaterPerCubeCost => _settings.HotWaterPerCube;
         public decimal ElectricityPerKwtCost => _settings.ElectricityPerKwt;
         public decimal InternetCost => _settings.Internet;
         public decimal WaterSumCost => _settings.WaterSum;
-
-        public IndicatorDataTextControlViewModel IndicatorInfoControlViewModel { get; } = new IndicatorDataTextControlViewModel();
-        public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; } = new ManageButtonsControlViewModel();
 
         public decimal ColdWaterIndicatorDifference
         {
@@ -39,7 +37,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _coldWaterIndicatorDifference = _indicatorInfoControlViewModel.CurrentColdWaterIndicator - PreviousColdWaterIndicator;
+                _coldWaterIndicatorDifference = IndicatorDataTextControlViewModel.ColdWaterIndicator - PreviousColdWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -51,7 +49,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _hotWaterIndicatorDifference = _indicatorInfoControlViewModel.CurrentHotWaterIndicator - PreviousHotWaterIndicator;
+                _hotWaterIndicatorDifference = IndicatorDataTextControlViewModel.HotWaterIndicator - PreviousHotWaterIndicator;
                 RaisePropertyChanged();
             }
         }
@@ -63,7 +61,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _electricityIndicatorDifference = _indicatorInfoControlViewModel.CurrentElectricityIndicator - PreviousElectricityindicator;
+                _electricityIndicatorDifference = IndicatorDataTextControlViewModel.ElectricityIndicator - PreviousElectricityindicator;
                 RaisePropertyChanged();
             }
         }
@@ -79,11 +77,14 @@ namespace CommunalPayments.ViewModels
 
         public MainWindowViewModel()
         {
-            SerializeHelper<IndicatorsModel>.CheckDataFile(_previousIndicators);
+            IndicatorDataTextControlViewModel = new IndicatorsDataTextControlViewModel();
+            ManageButtonsControlViewModel = new ManageButtonsControlViewModel(IndicatorDataTextControlViewModel);
+
+            SerializeHelper<IndicatorsDataTextControlViewModel>.CheckDataFile(IndicatorDataTextControlViewModel);
 
             try
             {
-                _previousIndicators = SerializeHelper<IndicatorsModel>.Get();
+                IndicatorDataTextControlViewModel = SerializeHelper<IndicatorsDataTextControlViewModel>.Get();
             }
             catch(Exception ex)
             {
@@ -92,7 +93,7 @@ namespace CommunalPayments.ViewModels
 
             try
             {
-                _settings = SerializeHelper<CostsModel>.Get();
+                _settings = SerializeHelper<Costs>.Get();
             }
             catch
             {

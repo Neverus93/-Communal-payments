@@ -3,7 +3,7 @@
 namespace CommunalPayments.Models
 {
     [Serializable]
-    public class CostsModel
+    public class Costs
     {
         public decimal ColdWaterPerCube { get; set; }
         public decimal HotWaterPerCube { get; set; }
@@ -11,12 +11,12 @@ namespace CommunalPayments.Models
         public decimal Internet { get; set; }
         public decimal WaterSum { get; set; }
 
-        public CostsModel()
+        public Costs()
         {
 
         }
 
-        public CostsModel(decimal coldWaterPerCube, decimal hotWaterPerCube,
+        public Costs(decimal coldWaterPerCube, decimal hotWaterPerCube,
             decimal electricityPerKwt, decimal internet, decimal waterSum)
         {
             ColdWaterPerCube = coldWaterPerCube;
