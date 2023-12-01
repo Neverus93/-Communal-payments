@@ -9,11 +9,11 @@
     <Grid>
         <StackPanel x:Name="IndicatorsText" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="Горячая вода" HorizontalAlignment="Left" Margin="10"/>
-            <TextBox x:Name="HotWaterInput" Text="{Binding CurrentHotWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="HotWaterInput" Text="{Binding CurrentHotWaterIndicator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Холодная вода" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ColdWaterInput" Text="{Binding CurrentColdWaterIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ColdWaterInput" Text="{Binding CurrentColdWaterIndicator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
             <TextBlock Text="Электроэнергия" HorizontalAlignment="Left" Margin="10,5,0,10"/>
-            <TextBox x:Name="ElectricityInput" Text="{Binding CurrentElectricityIndicator, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
+            <TextBox x:Name="ElectricityInput" Text="{Binding CurrentElectricityIndicator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,1,0,10" HorizontalAlignment="Left" Width="291"/>
         </StackPanel>
     </Grid>
 </UserControl>

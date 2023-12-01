@@ -22,7 +22,7 @@
                     <TextBlock Text="Холодная вода: "/>
                     <TextBlock x:Name="CurrentCold" 
                                Style="{StaticResource VisibilityStyle}">
-                        <Run Text="{Binding CurrentColdWaterIndicator, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Run Text="{Binding CurrentColdWaterIndicator, Source=ColdWaterInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <Run Text=" м³"/>
                     </TextBlock>
                 </StackPanel>
@@ -30,7 +30,7 @@
                     <TextBlock Text="Горячая вода: "/>
                     <TextBlock x:Name="CurrentHot"
                                Style="{StaticResource VisibilityStyle}">
-                        <Run Text="{Binding CurrentHotWaterIndicator, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Run Text="{Binding CurrentHotWaterIndicator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <Run Text=" м³"/>
                     </TextBlock>
                 </StackPanel>
@@ -38,7 +38,7 @@
                     <TextBlock Text="Электричество: "/>
                     <TextBlock x:Name="CurrentElecricity"
                                Style="{StaticResource VisibilityStyle}">
-                        <Run Text="{Binding CurrentElectricityIndicator, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Run Text="{Binding CurrentElectricityIndicator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <Run Text=" кВт⋅ч"/>
                     </TextBlock>
                 </StackPanel>
