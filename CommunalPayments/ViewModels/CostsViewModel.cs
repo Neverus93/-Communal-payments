@@ -9,27 +9,20 @@ namespace CommunalPayments.ViewModels
     {
         public event EventHandler AfterSave;
 
-        public decimal ColdWaterPerCubeCost { get; set; }
-
-        public decimal HotWaterPerCubeCost { get; set; }
-
-        public decimal ElectricityPerKwt { get; set; }
-
-        public decimal InternetCost { get; set; }
-
-        public decimal WaterSumCost { get; set; }
+        public Costs Costs { get; set; }
 
         public RelayCommand SaveSettingsCommand { get; }
 
         public CostsViewModel()
         {
+            Costs = new Costs();
             SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
         }
 
         private void SaveSettingsClick(object parameter)
         {
-            Costs settings = new Costs(ColdWaterPerCubeCost, HotWaterPerCubeCost, ElectricityPerKwt, InternetCost, WaterSumCost);
-            SerializeHelper<Costs>.Save(settings);
+            Costs = new Costs(Costs.ColdWaterPerCube,Costs.HotWaterPerCube, Costs.ElectricityPerKwt, Costs.Internet, Costs.WaterSum);
+            SerializeHelper<Costs>.Save(Costs);
             var onClose = AfterSave;
             onClose?.Invoke(this, EventArgs.Empty);
         }

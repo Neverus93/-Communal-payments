@@ -14,8 +14,7 @@ namespace CommunalPayments.ViewModels
         private decimal _hotWaterIndicatorDifference;
         private decimal _electricityIndicatorDifference;
 
-        private readonly Costs _settings = new Costs();
-
+        public CostsViewModel CostsViewModel { get; set; }
         public IndicatorsDataTextControlViewModel IndicatorDataTextControlViewModel { get; }
         public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; }
 
@@ -23,11 +22,11 @@ namespace CommunalPayments.ViewModels
         public decimal PreviousHotWaterIndicator => IndicatorDataTextControlViewModel.HotWaterIndicator;
         public decimal PreviousElectricityindicator => IndicatorDataTextControlViewModel.ElectricityIndicator;
 
-        public decimal ColdWaterPerCubeCost => _settings.ColdWaterPerCube;
-        public decimal HotWaterPerCubeCost => _settings.HotWaterPerCube;
-        public decimal ElectricityPerKwtCost => _settings.ElectricityPerKwt;
-        public decimal InternetCost => _settings.Internet;
-        public decimal WaterSumCost => _settings.WaterSum;
+        public decimal ColdWaterPerCubeCost => CostsViewModel.Costs.ColdWaterPerCube;
+        public decimal HotWaterPerCubeCost => CostsViewModel.Costs.HotWaterPerCube;
+        public decimal ElectricityPerKwtCost => CostsViewModel.Costs.ElectricityPerKwt;
+        public decimal InternetCost => CostsViewModel.Costs.Internet;
+        public decimal WaterSumCost => CostsViewModel.Costs.WaterSum;
 
         public decimal ColdWaterIndicatorDifference
         {
@@ -79,6 +78,7 @@ namespace CommunalPayments.ViewModels
         {
             IndicatorDataTextControlViewModel = new IndicatorsDataTextControlViewModel();
             ManageButtonsControlViewModel = new ManageButtonsControlViewModel(IndicatorDataTextControlViewModel);
+            CostsViewModel = new CostsViewModel();
 
             SerializeHelper<IndicatorsDataTextControlViewModel>.CheckDataFile(IndicatorDataTextControlViewModel);
 
@@ -93,7 +93,7 @@ namespace CommunalPayments.ViewModels
 
             try
             {
-                _settings = SerializeHelper<Costs>.Get();
+                CostsViewModel = SerializeHelper<CostsViewModel>.Get();
             }
             catch
             {

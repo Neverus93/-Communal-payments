@@ -39,13 +39,13 @@
         <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" 
                                        Grid.Row="2" 
                                        Grid.Column="0"/>
-        <controls:PreviousIndicatorsControl DataContext="{Binding PreviousIndicatorControlViewModel}" 
+        <controls:PreviousIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
                                             Grid.Row="0" 
                                             Grid.Column="1"/>
-        <controls:CurrentIndicatorsControl DataContext="{Binding CurrentIndicatorControlViewModel}" 
+        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
                                            Grid.Row="1" 
                                            Grid.Column="1"/>
-        <controls:CalculateScoreControl DataContext="{Binding CalculateScoreControlViewModel}" 
+        <controls:CalculateScoreControl DataContext="{Binding MainWindowViewModel}" 
                                         Grid.Row="2" 
                                         Grid.Column="1"/>
     </Grid>

@@ -117,7 +117,6 @@
     <Compile Include="Helpers\RuntimeHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Models\Costs.cs" />
-    <Compile Include="ViewModels\Controls\CalculateScoreControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\IndicatorsDataTextControlViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">
