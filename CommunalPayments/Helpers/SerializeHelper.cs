@@ -7,7 +7,7 @@ namespace CommunalPayments.Helpers
     public static class SerializeHelper<T>
     {
         private static Type typeOfT = typeof(T);
-        private static string xmlFileName = typeOfT.Name.Replace("DataTextControlViewModel", String.Empty);
+        private static string xmlFileName = typeOfT.Name.Replace("ViewModel", String.Empty);
 
         public static void Save(T parameter)
         {

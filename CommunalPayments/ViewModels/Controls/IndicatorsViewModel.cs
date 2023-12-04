@@ -4,7 +4,7 @@ using Prism.Mvvm;
 namespace CommunalPayments.ViewModels.Controls
 {
     [Serializable]
-    public class IndicatorsDataTextControlViewModel : BindableBase
+    public class IndicatorsViewModel : BindableBase
     {
         private decimal _coldWater;
         private decimal _hotWater;
@@ -47,20 +47,20 @@ namespace CommunalPayments.ViewModels.Controls
             }
         }
 
-        public IndicatorsDataTextControlViewModel()
+        public IndicatorsViewModel()
         {
         }
 
-        public IndicatorsDataTextControlViewModel(decimal cold, decimal hot, decimal electricity)
+        public IndicatorsViewModel(decimal cold, decimal hot, decimal electricity)
         {
             ColdWaterIndicator = cold;
             HotWaterIndicator = hot;
             ElectricityIndicator = electricity;
         }
 
-        public static IndicatorsDataTextControlViewModel operator -(IndicatorsDataTextControlViewModel previous, IndicatorsDataTextControlViewModel current)
+        public static IndicatorsViewModel operator -(IndicatorsViewModel previous, IndicatorsViewModel current)
         {
-            return new IndicatorsDataTextControlViewModel
+            return new IndicatorsViewModel
             {
                 ColdWaterIndicator = current.ColdWaterIndicator - previous.ColdWaterIndicator,
                 HotWaterIndicator = current.HotWaterIndicator - previous.HotWaterIndicator,

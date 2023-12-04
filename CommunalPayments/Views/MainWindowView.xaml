@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:controls="clr-namespace:CommunalPayments.Controls"
+        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels.Controls"
         mc:Ignorable="d"
         Title="Расчёт коммунальных платежей" Height="500" Width="800" ResizeMode="CanMinimize"
         Loaded="MainWindowView_OnLoaded">
@@ -29,7 +30,7 @@
         </Grid.ColumnDefinitions>
         
 
-        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
+        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorsViewModel}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center" 
                                        Grid.RowSpan="2" 
@@ -37,10 +38,10 @@
         <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" 
                                        Grid.Row="2" 
                                        Grid.Column="0"/>
-        <controls:PreviousIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
+        <controls:PreviousIndicatorsControl DataContext="{Binding MainWindowViewModel}" 
                                             Grid.Row="0" 
                                             Grid.Column="1"/>
-        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
+        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorsViewModel}" 
                                            Grid.Row="1" 
                                            Grid.Column="1"/>
         <controls:CalculateScoreControl 

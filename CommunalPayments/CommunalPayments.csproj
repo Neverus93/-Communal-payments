@@ -116,8 +116,7 @@
     </Compile>
     <Compile Include="Helpers\RuntimeHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
-    <Compile Include="Models\Costs.cs" />
-    <Compile Include="ViewModels\Controls\IndicatorsDataTextControlViewModel.cs" />
+    <Compile Include="ViewModels\Controls\IndicatorsViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">
       <DependentUpon>ApplicationInfo.xaml</DependentUpon>
@@ -199,8 +198,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,22 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:CostsViewModel}"
         mc:Ignorable="d"
         Title="Настройки" Height="367" Width="217" ResizeMode="NoResize">
 
     <Grid>
         <StackPanel>
             <TextBlock Text="Стоимость горячей воды за куб:" Margin="5"/>
-            <TextBox Text="{Binding Path=HotWaterPerCubeCost}" Margin="5"/>
+            <TextBox Text="{Binding Path=HotWaterPerCube}" Margin="5"/>
             <TextBlock Text="Стоимость холодной воды за куб:" Margin="5"/>
-            <TextBox Text="{Binding Path=ColdWaterPerCubeCost}" Margin="5"/>
+            <TextBox Text="{Binding Path=ColdWaterPerCube}" Margin="5"/>
             <TextBlock Text="Стоимость электроэнергии за кВт:" Margin="5"/>
             <TextBox Text="{Binding Path=ElectricityPerKwt}" Margin="5"/>
             <TextBlock Text="Стоимость водоотвода:" Margin="5"/>
-            <TextBox Text="{Binding Path=WaterSumCost}" Margin="5"/>
+            <TextBox Text="{Binding Path=WaterSum}" Margin="5"/>
             <TextBlock Text="Абонентская плата за интернет:" Margin="5"/>
-            <TextBox Text="{Binding Path=InternetCost}" Margin="5"/>
+            <TextBox Text="{Binding Path=Internet}" Margin="5"/>
             <Button Command="{Binding SaveSettingsCommand}" 
                     IsDefault="True" Content="Сохранить" Margin="5"/>
             <Button IsCancel="True" Content="Отмена" Margin="5"/>
