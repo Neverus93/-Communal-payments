@@ -14,22 +14,22 @@ namespace CommunalPayments.ViewModels
         public decimal ElectricityPerKwt { get; set; }
         public decimal Internet { get; set; }
         public decimal WaterSum { get; set; }
+
         [XmlIgnore]
         public RelayCommand SaveSettingsCommand { get; }
 
         public CostsViewModel()
         {
-            
+            SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
         }
 
-        public CostsViewModel(decimal cold, decimal hot, decimal electricity, decimal internet, decimal waterSum)
+        public CostsViewModel(decimal cold, decimal hot, decimal electricity, decimal internet, decimal waterSum) : this()
         {
             ColdWaterPerCube = cold;
             HotWaterPerCube = hot;
             ElectricityPerKwt = electricity;
             Internet = internet;
             WaterSum = waterSum;
-            SaveSettingsCommand = new RelayCommand(SaveSettingsClick);
         }
 
         private void SaveSettingsClick(object parameter)

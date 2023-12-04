@@ -23,9 +23,6 @@ namespace CommunalPayments.ViewModels.Controls
 
         private void SaveIndicatorClick(object parameter)
         {
-            IndicatorDataTextControlViewModel = new IndicatorsViewModel(IndicatorDataTextControlViewModel.ColdWaterIndicator,
-                                                        IndicatorDataTextControlViewModel.HotWaterIndicator,
-                                                        IndicatorDataTextControlViewModel.ElectricityIndicator);
             SerializeHelper<IndicatorsViewModel>.Save(IndicatorDataTextControlViewModel);
             MessageBox.Show("Данные успешно сохранены!");
         }

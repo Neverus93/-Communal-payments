@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:controls="clr-namespace:CommunalPayments.Controls"
-        xmlns:viewmodels="clr-namespace:CommunalPayments.ViewModels.Controls"
         mc:Ignorable="d"
         Title="Расчёт коммунальных платежей" Height="500" Width="800" ResizeMode="CanMinimize"
         Loaded="MainWindowView_OnLoaded">
@@ -28,9 +27,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
 
-        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorsViewModel}" 
+
+        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center" 
                                        Grid.RowSpan="2" 
@@ -38,13 +37,13 @@
         <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" 
                                        Grid.Row="2" 
                                        Grid.Column="0"/>
-        <controls:PreviousIndicatorsControl DataContext="{Binding MainWindowViewModel}" 
+        <controls:PreviousIndicatorsControl DataContext="{Binding PreviousIndicators}" 
                                             Grid.Row="0" 
                                             Grid.Column="1"/>
-        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorsViewModel}" 
+        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
                                            Grid.Row="1" 
                                            Grid.Column="1"/>
-        <controls:CalculateScoreControl 
+        <controls:CalculateScoreControl DataContext="{Binding MainWindowViewModel}"
                                         Grid.Row="2" 
                                         Grid.Column="1"/>
     </Grid>

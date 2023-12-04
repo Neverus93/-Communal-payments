@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using System.Windows;
 using System;
 using CommunalPayments.ViewModels.Controls;
+using CommunalPayments.Controls;
 
 namespace CommunalPayments.ViewModels
 {
@@ -16,6 +17,7 @@ namespace CommunalPayments.ViewModels
         public CostsViewModel CostsViewModel { get; set; }
         public IndicatorsViewModel IndicatorDataTextControlViewModel { get; set; }
         public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; set; }
+        public IndicatorsViewModel PreviousIndicators { get; set; }
 
         public decimal PreviousColdWaterIndicator { get; set; }
         public decimal PreviousHotWaterIndicator { get; set; }
@@ -76,14 +78,13 @@ namespace CommunalPayments.ViewModels
         public MainWindowViewModel()
         {
             IndicatorDataTextControlViewModel = new IndicatorsViewModel();
-            ManageButtonsControlViewModel = new ManageButtonsControlViewModel(IndicatorDataTextControlViewModel);
             CostsViewModel = new CostsViewModel();
 
             SerializeHelper<IndicatorsViewModel>.CheckDataFile(IndicatorDataTextControlViewModel);
 
             try
             {
-                IndicatorDataTextControlViewModel = SerializeHelper<IndicatorsViewModel>.Get();
+                PreviousIndicators = SerializeHelper<IndicatorsViewModel>.Get();
             }
             catch(Exception ex)
             {
@@ -106,6 +107,7 @@ namespace CommunalPayments.ViewModels
                 }
             }
 
+            ManageButtonsControlViewModel = new ManageButtonsControlViewModel(IndicatorDataTextControlViewModel);
             ColdWaterPerCubeCost = CostsViewModel.ColdWaterPerCube;
             HotWaterPerCubeCost = CostsViewModel.HotWaterPerCube;
             ElectricityPerKwtCost = CostsViewModel.ElectricityPerKwt;
