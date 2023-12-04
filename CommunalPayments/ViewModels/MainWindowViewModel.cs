@@ -4,83 +4,28 @@ using Prism.Mvvm;
 using System.Windows;
 using System;
 using CommunalPayments.ViewModels.Controls;
-using CommunalPayments.Controls;
 
 namespace CommunalPayments.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private decimal _coldWaterIndicatorDifference;
-        private decimal _hotWaterIndicatorDifference;
-        private decimal _electricityIndicatorDifference;
-
-        public CostsViewModel CostsViewModel { get; set; }
-        public IndicatorsViewModel IndicatorDataTextControlViewModel { get; set; }
-        public ManageButtonsControlViewModel ManageButtonsControlViewModel { get; set; }
+        public CostsViewModel Costs { get; set; }
+        public IndicatorsViewModel CurrentIndicators { get; set; }
+        public ManageButtonsControlViewModel ButtonsManager { get; set; }
         public IndicatorsViewModel PreviousIndicators { get; set; }
+        public CalculationViewModel Calculation { get; set; }
 
         public decimal PreviousColdWaterIndicator { get; set; }
         public decimal PreviousHotWaterIndicator { get; set; }
         public decimal PreviousElectricityindicator { get; set; }
 
-        public decimal ColdWaterPerCubeCost { get; set; }
-        public decimal HotWaterPerCubeCost { get; set; }
-        public decimal ElectricityPerKwtCost { get; set; }
-        public decimal InternetCost { get; set; }
-        public decimal WaterSumCost { get; set; }
-
-        public decimal ColdWaterIndicatorDifference
-        {
-            get
-            {
-                return _coldWaterIndicatorDifference < 0 ? 0 : _coldWaterIndicatorDifference;
-            }
-            set
-            {
-                _coldWaterIndicatorDifference = IndicatorDataTextControlViewModel.ColdWaterIndicator - PreviousColdWaterIndicator;
-                RaisePropertyChanged();
-            }
-        }
-        public decimal HotWaterIndicatorDifference
-        {
-            get
-            {
-                return _hotWaterIndicatorDifference < 0 ? 0 : _hotWaterIndicatorDifference;
-            }
-            set
-            {
-                _hotWaterIndicatorDifference = IndicatorDataTextControlViewModel.HotWaterIndicator - PreviousHotWaterIndicator;
-                RaisePropertyChanged();
-            }
-        }
-        public decimal ElectricityIndicatorDifference
-        {
-            get
-            {
-                return _electricityIndicatorDifference < 0 ? 0 : _electricityIndicatorDifference;
-            }
-            set
-            {
-                _electricityIndicatorDifference = IndicatorDataTextControlViewModel.ElectricityIndicator - PreviousElectricityindicator;
-                RaisePropertyChanged();
-            }
-        }
-
-        public decimal WaterSum => ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
-
-        public decimal ColdWaterCostResult => ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
-        public decimal HotWaterCostResult => HotWaterIndicatorDifference * HotWaterPerCubeCost;
-        public decimal ElectricityCostResult => ElectricityIndicatorDifference * ElectricityPerKwtCost;
-        public decimal WaterSumCostResult => WaterSum * WaterSumCost;
-
-        public decimal OverallResult => ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
-
         public MainWindowViewModel()
         {
-            IndicatorDataTextControlViewModel = new IndicatorsViewModel();
-            CostsViewModel = new CostsViewModel();
+            CurrentIndicators = new IndicatorsViewModel();
+            Costs = new CostsViewModel();
+            Calculation = new CalculationViewModel(Costs);
 
-            SerializeHelper<IndicatorsViewModel>.CheckDataFile(IndicatorDataTextControlViewModel);
+            SerializeHelper<IndicatorsViewModel>.CheckDataFile(CurrentIndicators);
 
             try
             {
@@ -93,7 +38,7 @@ namespace CommunalPayments.ViewModels
 
             try
             {
-                CostsViewModel = SerializeHelper<CostsViewModel>.Get();
+                Costs = SerializeHelper<CostsViewModel>.Get();
             }
             catch
             {
@@ -102,20 +47,15 @@ namespace CommunalPayments.ViewModels
 
                 if(result == MessageBoxResult.Yes)
                 {
-                    CostsView settingsView = new CostsView(CostsViewModel);
+                    CostsView settingsView = new CostsView(Costs);
                     settingsView.ShowDialog();
                 }
             }
 
-            ManageButtonsControlViewModel = new ManageButtonsControlViewModel(IndicatorDataTextControlViewModel);
-            ColdWaterPerCubeCost = CostsViewModel.ColdWaterPerCube;
-            HotWaterPerCubeCost = CostsViewModel.HotWaterPerCube;
-            ElectricityPerKwtCost = CostsViewModel.ElectricityPerKwt;
-            InternetCost = CostsViewModel.Internet;
-            WaterSumCost = CostsViewModel.WaterSum;
-            PreviousColdWaterIndicator = IndicatorDataTextControlViewModel.ColdWaterIndicator;
-            PreviousHotWaterIndicator = IndicatorDataTextControlViewModel.HotWaterIndicator;
-            PreviousElectricityindicator = IndicatorDataTextControlViewModel.ElectricityIndicator;
+            ButtonsManager = new ManageButtonsControlViewModel(CurrentIndicators);
+            PreviousColdWaterIndicator = CurrentIndicators.ColdWaterIndicator;
+            PreviousHotWaterIndicator = CurrentIndicators.HotWaterIndicator;
+            PreviousElectricityindicator = CurrentIndicators.ElectricityIndicator;
         }
     }
 }

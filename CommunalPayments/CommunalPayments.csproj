@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Helpers\RuntimeHelper.cs" />
     <Compile Include="Helpers\SerializeHelper.cs" />
+    <Compile Include="ViewModels\CalculationViewModel.cs" />
     <Compile Include="ViewModels\Controls\IndicatorsViewModel.cs" />
     <Compile Include="ViewModels\Controls\ManageButtonsControlViewModel.cs" />
     <Compile Include="Views\ApplicationInfo.xaml.cs">

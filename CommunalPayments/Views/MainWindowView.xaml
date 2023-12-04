@@ -29,21 +29,21 @@
         </Grid.ColumnDefinitions>
 
 
-        <controls:IndicatorDataTextControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
+        <controls:IndicatorDataTextControl DataContext="{Binding CurrentIndicators}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center" 
                                        Grid.RowSpan="2" 
                                        Grid.Column="0"/>
-        <controls:ManageButtonsControl DataContext="{Binding ManageButtonsControlViewModel}" 
+        <controls:ManageButtonsControl DataContext="{Binding ButtonsManager}" 
                                        Grid.Row="2" 
                                        Grid.Column="0"/>
         <controls:PreviousIndicatorsControl DataContext="{Binding PreviousIndicators}" 
                                             Grid.Row="0" 
                                             Grid.Column="1"/>
-        <controls:CurrentIndicatorsControl DataContext="{Binding IndicatorDataTextControlViewModel}" 
+        <controls:CurrentIndicatorsControl DataContext="{Binding CurrentIndicators}" 
                                            Grid.Row="1" 
                                            Grid.Column="1"/>
-        <controls:CalculateScoreControl DataContext="{Binding MainWindowViewModel}"
+        <controls:CalculateScoreControl DataContext="{Binding Calculation}"
                                         Grid.Row="2" 
                                         Grid.Column="1"/>
     </Grid>
