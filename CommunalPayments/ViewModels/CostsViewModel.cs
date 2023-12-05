@@ -8,7 +8,8 @@ namespace CommunalPayments.ViewModels
     [Serializable]
     public class CostsViewModel
     {
-        public event EventHandler AfterSave;
+        [XmlIgnore]
+        public Action AfterSave { get; set; }
         public decimal ColdWaterPerCube { get; set; }
         public decimal HotWaterPerCube { get; set; }
         public decimal ElectricityPerKwt { get; set; }
@@ -34,10 +35,8 @@ namespace CommunalPayments.ViewModels
 
         private void SaveSettingsClick(object parameter)
         {
-            var costsViewModel = new CostsViewModel(ColdWaterPerCube,HotWaterPerCube, ElectricityPerKwt, Internet, WaterSum);
-            SerializeHelper<CostsViewModel>.Save(costsViewModel);
-            var onClose = AfterSave;
-            onClose?.Invoke(this, EventArgs.Empty);
+            SerializeHelper<CostsViewModel>.Save(this);
+            AfterSave?.Invoke();
         }
     }
 }
