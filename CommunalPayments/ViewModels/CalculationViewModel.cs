@@ -21,85 +21,44 @@ namespace CommunalPayments.ViewModels
 
         public decimal ColdWaterIndicatorDifference
         {
-            get
-            {
-                return _coldWaterIndicatorDifference < 0 ? 0 : _coldWaterIndicatorDifference;
-            }
-            set
-            {
-                _coldWaterIndicatorDifference = value;
-                RaisePropertyChanged();
-            }
+            get => _coldWaterIndicatorDifference < 0 ? 0 : _coldWaterIndicatorDifference;
+            set => SetProperty(ref _coldWaterIndicatorDifference, value);
         }
         public decimal HotWaterIndicatorDifference
         {
-            get
-            {
-                return _hotWaterIndicatorDifference < 0 ? 0 : _hotWaterIndicatorDifference;
-            }
-            set
-            {
-                _hotWaterIndicatorDifference = value;
-                RaisePropertyChanged();
-            }
+            get => _hotWaterIndicatorDifference < 0 ? 0 : _hotWaterIndicatorDifference;
+            set => SetProperty(ref _hotWaterIndicatorDifference, value);
         }
         public decimal ElectricityIndicatorDifference
         {
-            get
-            {
-                return _electricityIndicatorDifference < 0 ? 0 : _electricityIndicatorDifference;
-            }
-            set
-            {
-                _electricityIndicatorDifference = value;
-                RaisePropertyChanged();
-            }
+            get => _electricityIndicatorDifference < 0 ? 0 : _electricityIndicatorDifference;
+            set => SetProperty(ref _electricityIndicatorDifference, value);
         }
         public decimal WaterSum
         {
             get => _waterSum;
-            set
-            {
-                _waterSum = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _waterSum, value);
         }
 
         public decimal ColdWaterCostResult
         {
             get => _coldWaterCostResult;
-            set
-            {
-                _coldWaterCostResult = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _coldWaterCostResult, value);
         }
         public decimal HotWaterCostResult
         {
             get => _hotWaterCostResult;
-            set
-            {
-                _hotWaterCostResult = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _hotWaterCostResult, value);
         }
         public decimal ElectricityCostResult
         {
             get => _electricityCostResult;
-            set
-            {
-                _electricityCostResult = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _electricityCostResult, value);
         }
         public decimal WaterSumCostResult
         {
             get => _waterSumCostResult;
-            set
-            {
-                _waterSumCostResult = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _waterSumCostResult, value);
         }
 
         public decimal OverallResult
