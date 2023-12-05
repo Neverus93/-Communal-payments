@@ -48,7 +48,7 @@ namespace CommunalPayments.ViewModels
             }
 
             Calculation = new CalculationViewModel(Costs, CurrentIndicators, PreviousIndicators);
-            ButtonsManager = new ManageButtonsControlViewModel(CurrentIndicators, Costs);
+            ButtonsManager = new ManageButtonsControlViewModel(CurrentIndicators, PreviousIndicators, Costs);
         }
     }
 }
