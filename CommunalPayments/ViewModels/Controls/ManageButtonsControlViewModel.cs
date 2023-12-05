@@ -8,13 +8,15 @@ namespace CommunalPayments.ViewModels.Controls
 {
     public class ManageButtonsControlViewModel : BindableBase
     {
+        public CostsViewModel Costs { get; set; }
         public IndicatorsViewModel IndicatorDataTextControlViewModel { get; set; }
         public RelayCommand SaveIndicatorCommand { get; }
         public RelayCommand CallSettingsCommand { get; }
         public RelayCommand CallApplicationInfoCommand { get; }
 
-        public ManageButtonsControlViewModel(IndicatorsViewModel indicatorDataTextControlViewModel)
+        public ManageButtonsControlViewModel(IndicatorsViewModel indicatorDataTextControlViewModel, CostsViewModel costs)
         {
+            Costs = costs; 
             IndicatorDataTextControlViewModel = indicatorDataTextControlViewModel;
             SaveIndicatorCommand = new RelayCommand(SaveIndicatorClick);
             CallSettingsCommand = new RelayCommand(CallSettingsClick);
@@ -29,8 +31,7 @@ namespace CommunalPayments.ViewModels.Controls
 
         private void CallSettingsClick(object parameter)
         {
-            var viewModel = new CostsViewModel();
-            CostsView settingsViewWindow = new CostsView(viewModel);
+            CostsView settingsViewWindow = new CostsView(Costs);
             settingsViewWindow.ShowDialog();
         }
 

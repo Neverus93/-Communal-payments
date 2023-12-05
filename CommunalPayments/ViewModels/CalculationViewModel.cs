@@ -15,13 +15,9 @@ namespace CommunalPayments.ViewModels
         private decimal _waterSumCostResult;
         private decimal _overallResult;
 
+        public CostsViewModel Costs { get; set; }
         public IndicatorsViewModel Indicators { get; set; }
         public IndicatorsViewModel PreviousIndicators { get; set; }
-        public decimal ColdWaterPerCubeCost { get; set; }
-        public decimal HotWaterPerCubeCost { get; set; }
-        public decimal ElectricityPerKwtCost { get; set; }
-        public decimal InternetCost { get; set; }
-        public decimal WaterSumCost { get; set; }
 
         public decimal ColdWaterIndicatorDifference
         {
@@ -120,11 +116,7 @@ namespace CommunalPayments.ViewModels
         {
             Indicators = indicators;
             PreviousIndicators = previousIndicators;
-            ColdWaterPerCubeCost = costsViewModel.ColdWaterPerCube;
-            HotWaterPerCubeCost = costsViewModel.HotWaterPerCube;
-            ElectricityPerKwtCost = costsViewModel.ElectricityPerKwt;
-            InternetCost = costsViewModel.Internet;
-            WaterSumCost = costsViewModel.WaterSum;
+            Costs = costsViewModel;
             Indicators.PropertyChanged += (s, e) => UpdateCalculation();
         }
 
@@ -134,11 +126,11 @@ namespace CommunalPayments.ViewModels
             HotWaterIndicatorDifference = Indicators.HotWaterIndicator - PreviousIndicators.HotWaterIndicator;
             ElectricityIndicatorDifference = Indicators.ElectricityIndicator - PreviousIndicators.ElectricityIndicator;
             WaterSum = ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
-            ColdWaterCostResult = ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
-            HotWaterCostResult = HotWaterIndicatorDifference * HotWaterPerCubeCost;
-            ElectricityCostResult = ElectricityIndicatorDifference * ElectricityPerKwtCost;
-            WaterSumCostResult = WaterSum * WaterSumCost;
-            OverallResult = ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
+            ColdWaterCostResult = ColdWaterIndicatorDifference * Costs.ColdWaterPerCube;
+            HotWaterCostResult = HotWaterIndicatorDifference * Costs.HotWaterPerCube;
+            ElectricityCostResult = ElectricityIndicatorDifference * Costs.ElectricityPerKwt;
+            WaterSumCostResult = WaterSum * Costs.WaterSum;
+            OverallResult = ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult + Costs.Internet;
         }
     }
 }
