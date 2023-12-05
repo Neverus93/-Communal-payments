@@ -51,13 +51,6 @@ namespace CommunalPayments.ViewModels.Controls
         {
         }
 
-        public IndicatorsViewModel(decimal cold, decimal hot, decimal electricity)
-        {
-            ColdWaterIndicator = cold;
-            HotWaterIndicator = hot;
-            ElectricityIndicator = electricity;
-        }
-
         public static IndicatorsViewModel operator -(IndicatorsViewModel previous, IndicatorsViewModel current)
         {
             return new IndicatorsViewModel

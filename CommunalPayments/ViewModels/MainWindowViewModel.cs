@@ -15,15 +15,10 @@ namespace CommunalPayments.ViewModels
         public IndicatorsViewModel PreviousIndicators { get; set; }
         public CalculationViewModel Calculation { get; set; }
 
-        public decimal PreviousColdWaterIndicator { get; set; }
-        public decimal PreviousHotWaterIndicator { get; set; }
-        public decimal PreviousElectricityindicator { get; set; }
-
         public MainWindowViewModel()
         {
             CurrentIndicators = new IndicatorsViewModel();
             Costs = new CostsViewModel();
-            Calculation = new CalculationViewModel(Costs);
 
             SerializeHelper<IndicatorsViewModel>.CheckDataFile(CurrentIndicators);
 
@@ -52,10 +47,8 @@ namespace CommunalPayments.ViewModels
                 }
             }
 
+            Calculation = new CalculationViewModel(Costs, CurrentIndicators, PreviousIndicators);
             ButtonsManager = new ManageButtonsControlViewModel(CurrentIndicators);
-            PreviousColdWaterIndicator = CurrentIndicators.ColdWaterIndicator;
-            PreviousHotWaterIndicator = CurrentIndicators.HotWaterIndicator;
-            PreviousElectricityindicator = CurrentIndicators.ElectricityIndicator;
         }
     }
 }

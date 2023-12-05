@@ -16,8 +16,7 @@ namespace CommunalPayments.ViewModels
         private decimal _overallResult;
 
         public IndicatorsViewModel Indicators { get; set; }
-        public MainWindowViewModel MainWindow { get; set; }
-        public CostsViewModel Costs { get; set; }
+        public IndicatorsViewModel PreviousIndicators { get; set; }
         public decimal ColdWaterPerCubeCost { get; set; }
         public decimal HotWaterPerCubeCost { get; set; }
         public decimal ElectricityPerKwtCost { get; set; }
@@ -32,7 +31,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _coldWaterIndicatorDifference = Indicators.ColdWaterIndicator - MainWindow.PreviousColdWaterIndicator;
+                _coldWaterIndicatorDifference = value;
                 RaisePropertyChanged();
             }
         }
@@ -44,7 +43,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _hotWaterIndicatorDifference = Indicators.HotWaterIndicator - MainWindow.PreviousHotWaterIndicator;
+                _hotWaterIndicatorDifference = value;
                 RaisePropertyChanged();
             }
         }
@@ -56,7 +55,7 @@ namespace CommunalPayments.ViewModels
             }
             set
             {
-                _electricityIndicatorDifference = Indicators.ElectricityIndicator - MainWindow.PreviousElectricityindicator;
+                _electricityIndicatorDifference = value;
                 RaisePropertyChanged();
             }
         }
@@ -65,7 +64,7 @@ namespace CommunalPayments.ViewModels
             get => _waterSum;
             set
             {
-                _waterSum = ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
+                _waterSum = value;
                 RaisePropertyChanged();
             }
         }
@@ -75,7 +74,7 @@ namespace CommunalPayments.ViewModels
             get => _coldWaterCostResult;
             set
             {
-                _coldWaterCostResult = ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
+                _coldWaterCostResult = value;
                 RaisePropertyChanged();
             }
         }
@@ -84,7 +83,7 @@ namespace CommunalPayments.ViewModels
             get => _hotWaterCostResult;
             set
             {
-                _hotWaterCostResult = HotWaterIndicatorDifference * HotWaterPerCubeCost;
+                _hotWaterCostResult = value;
                 RaisePropertyChanged();
             }
         }
@@ -93,7 +92,7 @@ namespace CommunalPayments.ViewModels
             get => _electricityCostResult;
             set
             {
-                _electricityCostResult = ElectricityIndicatorDifference * ElectricityPerKwtCost;
+                _electricityCostResult = value;
                 RaisePropertyChanged();
             }
         }
@@ -102,7 +101,7 @@ namespace CommunalPayments.ViewModels
             get => _waterSumCostResult;
             set
             {
-                _waterSumCostResult = WaterSum * WaterSumCost;
+                _waterSumCostResult = value;
                 RaisePropertyChanged();
             }
         }
@@ -112,19 +111,34 @@ namespace CommunalPayments.ViewModels
             get => _overallResult;
             set
             {
-                _overallResult = ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
+                _overallResult = value;
                 RaisePropertyChanged();
             }
         }
 
-        public CalculationViewModel(CostsViewModel costsViewModel)
+        public CalculationViewModel(CostsViewModel costsViewModel, IndicatorsViewModel indicators, IndicatorsViewModel previousIndicators)
         {
-            Costs = costsViewModel;
-            ColdWaterPerCubeCost = Costs.ColdWaterPerCube;
-            HotWaterPerCubeCost = Costs.HotWaterPerCube;
-            ElectricityPerKwtCost = Costs.ElectricityPerKwt;
-            InternetCost = Costs.Internet;
-            WaterSumCost = Costs.WaterSum;
+            Indicators = indicators;
+            PreviousIndicators = previousIndicators;
+            ColdWaterPerCubeCost = costsViewModel.ColdWaterPerCube;
+            HotWaterPerCubeCost = costsViewModel.HotWaterPerCube;
+            ElectricityPerKwtCost = costsViewModel.ElectricityPerKwt;
+            InternetCost = costsViewModel.Internet;
+            WaterSumCost = costsViewModel.WaterSum;
+            Indicators.PropertyChanged += (s, e) => UpdateCalculation();
+        }
+
+        private void UpdateCalculation()
+        {
+            ColdWaterIndicatorDifference = Indicators.ColdWaterIndicator - PreviousIndicators.ColdWaterIndicator;
+            HotWaterIndicatorDifference = Indicators.HotWaterIndicator - PreviousIndicators.HotWaterIndicator;
+            ElectricityIndicatorDifference = Indicators.ElectricityIndicator - PreviousIndicators.ElectricityIndicator;
+            WaterSum = ColdWaterIndicatorDifference + HotWaterIndicatorDifference;
+            ColdWaterCostResult = ColdWaterIndicatorDifference * ColdWaterPerCubeCost;
+            HotWaterCostResult = HotWaterIndicatorDifference * HotWaterPerCubeCost;
+            ElectricityCostResult = ElectricityIndicatorDifference * ElectricityPerKwtCost;
+            WaterSumCostResult = WaterSum * WaterSumCost;
+            OverallResult = ColdWaterCostResult + HotWaterCostResult + ElectricityCostResult + WaterSumCostResult;
         }
     }
 }
