@@ -1,5 +1,4 @@
-﻿using CommunalPayments.ViewModels.Controls;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace CommunalPayments.Controls
 {
@@ -11,8 +10,6 @@ namespace CommunalPayments.Controls
         public CalculateScoreControl()
         {
             InitializeComponent();
-            var viewModel = new CalculateScoreControlViewModel();
-            DataContext = viewModel;
         }
     }
 }

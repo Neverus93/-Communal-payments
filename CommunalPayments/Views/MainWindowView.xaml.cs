@@ -14,7 +14,6 @@ namespace CommunalPayments.Views
             InitializeComponent();
             var viewModel = new MainWindowViewModel();
             DataContext = viewModel;
-            //Сделать обновление данных после изменения настроек - событие AfterSave
         }
 
         private void MainWindowView_OnLoaded(object sender, RoutedEventArgs e)

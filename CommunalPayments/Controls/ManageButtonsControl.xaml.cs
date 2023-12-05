@@ -11,8 +11,6 @@ namespace CommunalPayments.Controls
         public ManageButtonsControl()
         {
             InitializeComponent();
-            var viewModel = new ManageButtonsControlViewModel();
-            DataContext = viewModel;
         }
     }
 }

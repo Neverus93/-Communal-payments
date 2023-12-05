@@ -1,4 +1,4 @@
-﻿using CommunalPayments.ViewModels.Controls;
+﻿using CommunalPayments.ViewModels;
 using System.Windows.Controls;
 
 namespace CommunalPayments.Controls
@@ -11,8 +11,6 @@ namespace CommunalPayments.Controls
         public PreviousIndicatorsControl()
         {
             InitializeComponent();
-            var viewModel = new PreviousIndicatorControlViewModel();
-            DataContext = viewModel;
         }
     }
 }

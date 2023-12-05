@@ -6,13 +6,11 @@ namespace CommunalPayments.Controls
     /// <summary>
     /// Логика взаимодействия для IndicatorInfoControl.xaml
     /// </summary>
-    public partial class IndicatorInfoControl : UserControl
+    public partial class IndicatorDataTextControl : UserControl
     {
-        public IndicatorInfoControl()
+        public IndicatorDataTextControl()
         {
             InitializeComponent();
-            var viewModel = new IndicatorInfoControlViewModel();
-            DataContext = viewModel;
         }
     }
 }

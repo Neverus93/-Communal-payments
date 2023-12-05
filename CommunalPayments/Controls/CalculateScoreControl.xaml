@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:controls="clr-namespace:CommunalPayments.ViewModels.Controls" 
-             d:DataContext="{d:DesignInstance Type=controls:CalculateScoreControlViewModel}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -20,56 +19,42 @@
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Холодная вода: " HorizontalAlignment="Left"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="ColdWaterIndicatorsDifference" DataContext="{Binding ColdWaterIndicatorDifference, UpdateSourceTrigger=PropertyChanged}"
-                                   Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="ColdWaterPerCubeCost" DataContext="{Binding ColdWaterPerCubeCost}"
-                                   Text="{Binding Path=., StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="ColdWaterCostResult" DataContext="{Binding ColdWaterCostResult}"
-                                   Text="{Binding Path=., StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ColdWaterIndicatorDifference, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ColdWaterPerCubeCost, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ColdWaterCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Горячая вода: " HorizontalAlignment="Left"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="HotWaterIndicatorsDifference" DataContext="{Binding HotWaterIndicatorDifference, UpdateSourceTrigger=PropertyChanged}"
-                                   Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="HotWaterPerCubeCost" DataContext="{Binding HotWaterPerCubeCost}"
-                                   Text="{Binding Path=., StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="HotWaterCostResult" DataContext="{Binding HotWaterCostResult}"
-                                   Text="{Binding Path=., StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding HotWaterIndicatorDifference, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding HotWaterPerCubeCost, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding HotWaterCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Электричество: "/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="ElecricityIndicatorsDifference" DataContext="{Binding ElectricityIndicatorDifference, UpdateSourceTrigger=PropertyChanged}"
-                                   Text="{Binding Path=., StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="ElecricityPerCubeCost" DataContext="{Binding ElectricityPerKwtCost}"
-                                   Text="{Binding Path=., StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="ElecricityCostResult" DataContext="{Binding ElectricityCostResult}"
-                                   Text="{Binding Path=., StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ElectricityIndicatorDifference, StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ElectricityPerKwtCost, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding ElectricityCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Водоотвод: "/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="WaterSum" DataContext="{Binding WaterSum}"
-                                   Text="{Binding Path=., StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="WaterSumCost" DataContext="{Binding WaterSumCost}"
-                                   Text="{Binding Path=., StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock x:Name="WaterSumCostResult" DataContext="{Binding WaterSumCostResult}"
-                                   Text="{Binding Path=., StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding WaterSum, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding WaterSumCost, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBlock Text="{Binding WaterSumCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Интернет: "/>
-                    <TextBlock x:Name="CalculateInternet" DataContext="{Binding InternetCost}"
-                               Text="{Binding Path=., StringFormat={}{0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock Text="{Binding InternetCost, StringFormat={}{0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="ИТОГО: "/>
-                    <TextBlock x:Name="CalculateScore" DataContext="{Binding OverallResult}"
-                               Text="{Binding Path=., StringFormat={}{0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBlock Text="{Binding OverallResult, StringFormat={}{0} ₽}" Style="{StaticResource VisibilityStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

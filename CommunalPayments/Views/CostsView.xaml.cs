@@ -6,9 +6,9 @@ namespace CommunalPayments.Views
     /// <summary>
     /// Логика взаимодействия для Settings.xaml
     /// </summary>
-    public partial class SettingsView : Window
+    public partial class CostsView : Window
     {
-        public SettingsView(SettingsViewModel dataContext)
+        public CostsView(CostsViewModel dataContext)
         {
             InitializeComponent();
             DataContext = dataContext;
