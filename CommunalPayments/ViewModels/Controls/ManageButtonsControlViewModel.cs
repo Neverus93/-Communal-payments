@@ -3,6 +3,7 @@ using CommunalPayments.Helpers;
 using CommunalPayments.Views;
 using Prism.Mvvm;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace CommunalPayments.ViewModels.Controls
 {
@@ -31,7 +32,16 @@ namespace CommunalPayments.ViewModels.Controls
 
         private void CallSettingsClick(object parameter)
         {
-            CostsView settingsViewWindow = new CostsView(Costs);
+            var costs = new CostsViewModel();
+            costs.AfterSave += () =>
+            {
+                Costs.ColdWaterPerCube = costs.ColdWaterPerCube;
+                Costs.HotWaterPerCube = costs.HotWaterPerCube;
+                Costs.ElectricityPerKwt = costs.ElectricityPerKwt;
+                Costs.Internet = costs.Internet;
+                Costs.WaterSum = costs.WaterSum;
+            };
+            CostsView settingsViewWindow = new CostsView(costs);
             settingsViewWindow.ShowDialog();
         }
 

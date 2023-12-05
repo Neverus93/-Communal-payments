@@ -105,11 +105,7 @@ namespace CommunalPayments.ViewModels
         public decimal OverallResult
         {
             get => _overallResult;
-            set
-            {
-                _overallResult = value;
-                RaisePropertyChanged();
-            }
+            set => SetProperty(ref _overallResult, value);
         }
 
         public CalculationViewModel(CostsViewModel costsViewModel, IndicatorsViewModel indicators, IndicatorsViewModel previousIndicators)
@@ -118,6 +114,7 @@ namespace CommunalPayments.ViewModels
             PreviousIndicators = previousIndicators;
             Costs = costsViewModel;
             Indicators.PropertyChanged += (s, e) => UpdateCalculation();
+            Costs.PropertyChanged += (s, e) => UpdateCalculation();
         }
 
         private void UpdateCalculation()

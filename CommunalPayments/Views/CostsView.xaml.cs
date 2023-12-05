@@ -12,7 +12,7 @@ namespace CommunalPayments.Views
         {
             InitializeComponent();
             DataContext = dataContext;
-            dataContext.AfterSave = Close;
+            dataContext.AfterSave += Close;
         }
     }
 }
