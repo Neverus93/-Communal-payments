@@ -12,39 +12,18 @@ namespace CommunalPayments.ViewModels.Controls
 
         public decimal ColdWaterIndicator
         {
-            get
-            {
-                return _coldWater;
-            }
-            set
-            {
-                _coldWater = value;
-                RaisePropertyChanged();
-            }
+            get => _coldWater;
+            set => SetProperty(ref _coldWater, value);
         }
         public decimal HotWaterIndicator
         {
-            get
-            {
-                return _hotWater;
-            }
-            set
-            {
-                _hotWater = value;
-                RaisePropertyChanged();
-            }
+            get => _hotWater;
+            set => SetProperty(ref _hotWater, value);
         }
         public decimal ElectricityIndicator
         {
-            get
-            {
-                return _electricity;
-            }
-            set
-            {
-                _electricity = value;
-                RaisePropertyChanged();
-            }
+            get => _electricity;
+            set => SetProperty(ref _electricity, value);
         }
 
         public IndicatorsViewModel()
