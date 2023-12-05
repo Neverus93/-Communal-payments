@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/VisibilityStyleResource.xaml"/>
+                <ResourceDictionary Source="../Resources/StyleResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -21,7 +21,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding ColdWaterIndicatorDifference, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock Text="{Binding Costs.ColdWaterPerCube, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock Text="{Binding ColdWaterCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBox Text="{Binding ColdWaterCostResult, StringFormat={} равно {0} ₽}"  Style="{StaticResource TextBoxStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -29,7 +29,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding HotWaterIndicatorDifference, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock Text="{Binding Costs.HotWaterPerCube, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock Text="{Binding HotWaterCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBox Text="{Binding HotWaterCostResult, StringFormat={} равно {0} ₽}"  Style="{StaticResource TextBoxStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -37,7 +37,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding ElectricityIndicatorDifference, StringFormat={}{0} кВт⋅ч}" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock Text="{Binding Costs.ElectricityPerKwt, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock Text="{Binding ElectricityCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBox Text="{Binding ElectricityCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource TextBoxStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -45,7 +45,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding WaterSum, StringFormat={}{0} м³}" Style="{StaticResource VisibilityStyle}"/>
                         <TextBlock Text="{Binding Costs.WaterSum, StringFormat={} x {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
-                        <TextBlock Text="{Binding WaterSumCostResult, StringFormat={} равно {0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                        <TextBox Text="{Binding WaterSumCostResult, StringFormat={} равно {0} ₽}"  Style="{StaticResource TextBoxStyle}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -54,7 +54,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="ИТОГО: "/>
-                    <TextBlock Text="{Binding OverallResult, StringFormat={}{0} ₽}" Style="{StaticResource VisibilityStyle}"/>
+                    <TextBox Text="{Binding OverallResult, StringFormat={}{0} ₽}"  Style="{StaticResource TextBoxStyle}"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
