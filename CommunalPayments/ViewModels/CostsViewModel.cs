@@ -1,20 +1,46 @@
 ﻿using CommunalPayments.Command;
 using CommunalPayments.Helpers;
+using Prism.Mvvm;
 using System;
 using System.Xml.Serialization;
 
 namespace CommunalPayments.ViewModels
 {
     [Serializable]
-    public class CostsViewModel
+    public class CostsViewModel : BindableBase
     {
-        [XmlIgnore]
-        public Action AfterSave { get; set; }
-        public decimal ColdWaterPerCube { get; set; }
-        public decimal HotWaterPerCube { get; set; }
-        public decimal ElectricityPerKwt { get; set; }
-        public decimal Internet { get; set; }
-        public decimal WaterSum { get; set; }
+        private decimal _coldWaterPerCube;
+        private decimal _hotWaterPerCube;
+        private decimal _electricityPerKwt;
+        private decimal _internet;
+        private decimal _waterSum;
+
+        public event Action AfterSave;
+        public decimal ColdWaterPerCube
+        {
+            get => _coldWaterPerCube;
+            set => SetProperty(ref _coldWaterPerCube, value);
+        }
+        public decimal HotWaterPerCube
+        {
+            get => _hotWaterPerCube;
+            set => SetProperty(ref _hotWaterPerCube, value);
+        }
+        public decimal ElectricityPerKwt
+        {
+            get => _electricityPerKwt;
+            set => SetProperty(ref _electricityPerKwt, value);
+        }
+        public decimal Internet
+        {
+            get => _internet;
+            set => SetProperty(ref _internet, value);
+        }
+        public decimal WaterSum
+        {
+            get => _waterSum;
+            set => SetProperty(ref _waterSum, value);
+        }
 
         [XmlIgnore]
         public RelayCommand SaveSettingsCommand { get; }
