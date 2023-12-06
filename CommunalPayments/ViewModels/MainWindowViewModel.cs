@@ -4,11 +4,13 @@ using Prism.Mvvm;
 using System.Windows;
 using System;
 using CommunalPayments.ViewModels.Controls;
+using CommunalPayments.Db;
 
 namespace CommunalPayments.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private CommunalPaymentsDbContext _dbContext = new CommunalPaymentsDbContext();
         public CostsViewModel Costs { get; set; }
         public IndicatorsViewModel CurrentIndicators { get; set; }
         public ManageButtonsControlViewModel ButtonsManager { get; set; }
@@ -19,6 +21,8 @@ namespace CommunalPayments.ViewModels
         {
             CurrentIndicators = new IndicatorsViewModel();
             Costs = new CostsViewModel();
+
+            _dbContext.Database.EnsureCreated();
 
             SerializeHelper<IndicatorsViewModel>.CheckDataFile(CurrentIndicators);
 

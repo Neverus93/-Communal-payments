@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Prism.Mvvm;
 
 namespace CommunalPayments.ViewModels.Controls
@@ -15,11 +16,13 @@ namespace CommunalPayments.ViewModels.Controls
             get => _coldWater;
             set => SetProperty(ref _coldWater, value);
         }
+
         public decimal HotWaterIndicator
         {
             get => _hotWater;
             set => SetProperty(ref _hotWater, value);
         }
+
         public decimal ElectricityIndicator
         {
             get => _electricity;
